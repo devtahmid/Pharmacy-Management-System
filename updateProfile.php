@@ -153,10 +153,10 @@ header('location:profile.php?error=1');
 
   $db->commit();
   if ($conn->rowCount()==0) {
-    header('location:profile.php');
+  //  header('location:profile.php');
   }
   elseif ($conn->rowCount()==1) {
-  header('location:profile.php');
+//  header('location:profile.php');
   }
   }
   catch(PDOException $e){
