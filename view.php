@@ -54,6 +54,12 @@ try
 								}
 							}
 
+							echo "<div class='col-6 col-md-6'>";
+								echo "<form method='get' action='history.php'>";
+										 echo "<input type='hidden' name='id' value='".$row["ID"]."'/><br />";
+										 echo "<input class='btn btn-secondary btn-lg btn-block' type='submit' name='view' value='make purchase'/> <br />";
+								echo "</form>";
+
 						echo "</td>";
 						echo "</tr>";
 
@@ -77,18 +83,8 @@ try
 	            echo "<td colspan=2> <h5> Description: ".$row["Description"]."</h4></td>";
 	          echo "</tr>";
 
-												echo "<tr>";
-						echo "<div class='col-6 col-md-4'>";
-							echo "<form method='get' action='purchaseHistory.php'>";
-									 echo "<input type='hidden' name='id' value='".$row["ID"]."'/><br />";
-									 echo "<input class='btn btn-secondary btn-lg btn-block' type='submit' name='view' value='View More Details'/> <br />";
-							echo "</form>";
-						echo "</tr>";
-
-
 					echo "</div>";
 					echo "</div>";
-
 
             echo "</td></h3>";
 					echo "</tr>";
