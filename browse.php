@@ -8,7 +8,7 @@ try
 
     require ("project_connection.php");
 
-    $sql = "select * from items_ID";
+    $sql = "select * from items";
     $rs = $db->query($sql);
     $stmtpic = $db->prepare("select picture from pictures where id = ? limit 1");
     //$x = $rs->rowcount();
