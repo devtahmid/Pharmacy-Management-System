@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.3
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 20, 2022 at 01:12 PM
+-- Generation Time: May 25, 2022 at 03:49 PM
 -- Server version: 10.4.24-MariaDB
--- PHP Version: 7.4.29
+-- PHP Version: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -58,7 +58,6 @@ CREATE TABLE `items` (
 --
 
 INSERT INTO `items` (`ID`, `Name`, `Description`, `Quantity`, `Price`, `Brand`, `Category`, `Photo`) VALUES
-(1, 'First Medicine', 'First Medicine', 10, 3.99, 'First', 'Pill', 'Fill'),
 (2, 'Second Medi', 'Second Medicine', 5, 1, 'Medi', 'Drink', 'Second'),
 (3, 'Panadol Advance', 'Blue Panadol', 30, 0.35, 'Panadol', 'Pill', 'PanadolAd'),
 (4, 'Ibuprofen', 'Anti-Inflammatory Drug', 25, 0.5, 'Ibuprofen', 'Pill', 'Ibuprofen'),
@@ -81,9 +80,16 @@ CREATE TABLE `orderdata` (
   `user` varchar(50) NOT NULL,
   `status` varchar(30) NOT NULL,
   `date` varchar(30) NOT NULL,
-  `supplier name` varchar(20) NOT NULL,
+  `supplierName` varchar(20) NOT NULL,
   `quantity` int(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `orderdata`
+--
+
+INSERT INTO `orderdata` (`OID`, `user`, `status`, `date`, `supplierName`, `quantity`) VALUES
+(1, 'testUser', 'onlyForTest', 'empty', 'Test', 1);
 
 -- --------------------------------------------------------
 
@@ -100,6 +106,36 @@ CREATE TABLE `payment` (
   `year` int(4) NOT NULL,
   `total` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pictures`
+--
+
+CREATE TABLE `pictures` (
+  `PICTURE_ID` int(11) NOT NULL,
+  `ID` int(11) NOT NULL,
+  `PICTURE` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `pictures`
+--
+
+INSERT INTO `pictures` (`PICTURE_ID`, `ID`, `PICTURE`) VALUES
+(1, 1, 'uploadedfiles/med-1.jfif'),
+(2, 2, 'uploadedfiles/med-2.jpg'),
+(3, 3, 'uploadedfiles/Panadol-Advance.jpeg'),
+(4, 4, 'uploadedfiles/ibuprofen.jpeg'),
+(5, 5, 'uploadedfiles/Panadol-Extra.avif'),
+(6, 6, 'uploadedfiles/Panadol-Extra.avif'),
+(7, 7, 'uploadedfiles/Voltarol.jpeg\r\n'),
+(8, 8, 'uploadedfiles/aspirin.jpeg'),
+(9, 9, 'uploadedfiles/spray.jfif'),
+(10, 10, 'uploadedfiles/sinus.png'),
+(11, 11, 'uploadedfiles/broncho.jpeg'),
+(12, 12, 'uploadedfiles/strepsils.jpeg');
 
 -- --------------------------------------------------------
 
@@ -127,9 +163,18 @@ CREATE TABLE `staff` (
 --
 
 CREATE TABLE `supplier` (
+  `ID` int(11) NOT NULL,
   `name` varchar(20) NOT NULL,
   `number` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `supplier`
+--
+
+INSERT INTO `supplier` (`ID`, `name`, `number`) VALUES
+(1, 'supplier1', '1777666'),
+(2, 'supplier2', '1777222');
 
 -- --------------------------------------------------------
 
@@ -151,7 +196,7 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`UID`, `Username`, `Email`, `Password`, `Type`) VALUES
 (111, 'A1AAA', 'A1@email.com', 'aaAA11', 'Customer'),
-(222, 'B1BBB', 'B1@email.com', 'B1B111', 'Pharmacist');
+(222, 'B1BBB', 'B1@email.com', 'bbBB11', 'Pharmacist');
 
 -- --------------------------------------------------------
 
@@ -194,11 +239,24 @@ ALTER TABLE `payment`
   ADD PRIMARY KEY (`PID`);
 
 --
+-- Indexes for table `pictures`
+--
+ALTER TABLE `pictures`
+  ADD PRIMARY KEY (`PICTURE_ID`),
+  ADD UNIQUE KEY `ID` (`ID`);
+
+--
 -- Indexes for table `staff`
 --
 ALTER TABLE `staff`
   ADD PRIMARY KEY (`Sid`),
   ADD UNIQUE KEY `CPR` (`CPR`);
+
+--
+-- Indexes for table `supplier`
+--
+ALTER TABLE `supplier`
+  ADD PRIMARY KEY (`ID`);
 
 --
 -- Indexes for table `user`
@@ -229,7 +287,7 @@ ALTER TABLE `items`
 -- AUTO_INCREMENT for table `orderdata`
 --
 ALTER TABLE `orderdata`
-  MODIFY `OID` int(9) NOT NULL AUTO_INCREMENT;
+  MODIFY `OID` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `payment`
@@ -238,10 +296,22 @@ ALTER TABLE `payment`
   MODIFY `PID` int(9) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `pictures`
+--
+ALTER TABLE `pictures`
+  MODIFY `PICTURE_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
 -- AUTO_INCREMENT for table `staff`
 --
 ALTER TABLE `staff`
   MODIFY `Sid` int(9) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `supplier`
+--
+ALTER TABLE `supplier`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `user`
