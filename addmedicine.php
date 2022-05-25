@@ -5,8 +5,8 @@ session_start();
 if (!isset($_SESSION['userId']))
   header('location: login_form.php?error=1');
 
-//if($_SESSION['userType'] != 'Pharmacist')
-  //  header('location: index.php');
+if($_SESSION['userType'] != 'Pharmacist')
+  header('location: index.php');
 ?>
 
 <html>
