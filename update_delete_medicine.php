@@ -5,7 +5,7 @@ try
     extract($_GET);
     $itemID = $med;
     if(isset($_GET['done'])){
-      $sql = "Update items Set Description= '$description' ,Price = $price , Brand = '$brand' , Category= '$category' Where ID=$itemID";
+      $sql = "Update items Set Description= '$description',Quantity = '$quantity'  ,Price = '$price' , Brand = '$brand' , Category= '$category' Where ID=$itemID";
       $change = $db->prepare($sql);
       $change->execute();
       echo "Database Updated";

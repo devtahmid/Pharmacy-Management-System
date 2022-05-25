@@ -84,6 +84,14 @@ try
               <td> <input type='text' name='description' placeholder='Edit Description'> </td>
 	          </tr>
 
+					</tr>
+
+											<tr>
+					<div class='col-6 col-md-4'>
+						<td colspan=2> <h5> Order Stock From Supplier: <?php echo $row["Quantity"]?></h4></td>
+						<td> <input type='text' name='quantity' placeholder='Edit Stock Quantity'> </td>
+					</tr>
+
 
 					</div>
 					</div>
