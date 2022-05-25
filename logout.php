@@ -1,7 +1,8 @@
 <?php
-unset($_SESSION['user_id']);
-unset($_SESSION['auction_id']);
+unset($_SESSION['userId']);
 unset($_SESSION['userType']);
+unset($_SESSION["id"]);
+session_unset();
 session_destroy();
 header("location:login_form.php");
 ?>

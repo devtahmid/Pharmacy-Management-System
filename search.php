@@ -1,4 +1,8 @@
 <?php
+session_start();
+if (!isset($_SESSION['userId']))
+  header('location: login_form.php?error=1');
+
 require('header.php');
 	// Search box from index.php
 	session_start();

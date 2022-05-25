@@ -5,8 +5,8 @@ session_start();
 if (!isset($_SESSION['userId']))
   header('location: login_form.php?error=1');
 
-if($_SESSION['userType'] != 'Pharmacist')
-    header('location: index.php');
+//if($_SESSION['userType'] != 'Pharmacist')
+  //  header('location: index.php');
 ?>
 
 <html>
@@ -56,6 +56,9 @@ if($_SESSION['userType'] != 'Pharmacist')
 
        <label><h3>Category:</h3></label>
        <input class='form-control' type='text' name='cate' size='50'>
+
+       <label class='col-form-label-lg'><h3>Expiry Date:</h3></label>>
+       <input class="form-control" type="date" name="expiry" <?php echo " min =".date('Y-m-d')." required />";?>
 
        <label><h3>Photo:</h3></label>
        <input class='form-control' type='text' name='photo' placeholder=""  size='50' required><br>

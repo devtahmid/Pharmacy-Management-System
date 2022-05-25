@@ -71,7 +71,7 @@
     session_start();
     $_SESSION['activeUser']=$username;
     $_SESSION['userId']=$Sid;
-    $_SESSION['userType']= 'Customer'
+    $_SESSION['userType']= 'Customer';
     header('location:index.php');
     }
     }

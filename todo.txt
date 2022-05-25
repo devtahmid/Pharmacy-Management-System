@@ -1,6 +1,5 @@
 - session on every single page format and spelling
 
-- sign up 
 
 -3 types of headers
 
@@ -13,3 +12,5 @@
 - supplier -> add supplier, order from supplier , check order status
 
 - profile (if nothing to do)
+
+-khlid's add stock fields , PICTURE 

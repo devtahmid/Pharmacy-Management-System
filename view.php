@@ -6,15 +6,12 @@ require('header.php');
 		header('location:reg_loginform.php?error=1');
 
 	extract($_GET);
-if(isset($view))
-{
-	$_SESSION["id"] = $id;
-}
+
 try
 	{
 		require('project_connection.php');
-		$stmt = $db->query("select * from items where ID =".$_SESSION['id']);
-		$stmtpic = $db->query("select PICTURE from pictures where ID =".$_SESSION['id']);
+		$stmt = $db->query("select * from items where ID =".$id);
+		$stmtpic = $db->query("select PICTURE from pictures where ID =".$id);
    // $stmt2 = $db->prepare("select USERNAME from users where USER_ID = ?");
 ?>
 
@@ -55,7 +52,7 @@ try
 							}
 
 							echo "<div class='col-6 col-md-6'>";
-								echo "<form method='get' action='history.php'>";
+								echo "<form method='get' action='purchase.php'>";
 										 echo "<input type='hidden' name='id' value='".$row["ID"]."'/><br />";
 										 echo "<input class='btn btn-secondary btn-lg btn-block' type='submit' name='view' value='make purchase'/> <br />";
 								echo "</form>";
