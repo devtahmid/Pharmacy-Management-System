@@ -62,7 +62,7 @@
     $conn->execute();
     $db->commit();
     if ($conn->rowCount()==0) {
-    //header('location:registration_form.php?error=4');
+    header('location:registration_form.php?error=4');
     }
     elseif ($conn->rowCount()==1) {
     //successful registration
@@ -71,6 +71,7 @@
     session_start();
     $_SESSION['activeUser']=$username;
     $_SESSION['userId']=$Sid;
+    $_SESSION['userType']= 'Customer'
     header('location:index.php');
     }
     }
@@ -78,7 +79,7 @@
       $db->rollBack();
       echo "errorrrr:".$e->getMessage();
       //will show alert on reg_loginform.php with refreshing + error
-    //  header('location:registration_form.php?error=4');
+     header('location:registration_form.php?error=4');
 
     }
   }
