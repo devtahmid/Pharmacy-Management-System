@@ -61,11 +61,6 @@ foreach ($rs as $row)
 				 echo "<input type='hidden' name='id' value='".$row["ID"]."'/><br />";
 				 echo "<input class='btn btn-secondary btn-lg btn-block' type='submit' name='view' value='Edit Supplier'/> <br />";
 			echo "</form>";
-
-			echo "<form method='get' action=''>";
-				 echo "<input type='hidden' name='id' value='".$row["ID"]."'/><br />";
-				 echo "<input class='btn btn-secondary btn-lg btn-block' type='submit' name='view' value='Delete supplier'/> <br />";
-			echo "</form>";
 		}
 
 		echo "</div> <br />";// end of data column

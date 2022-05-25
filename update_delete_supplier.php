@@ -5,14 +5,14 @@ try
     extract($_GET);
     $itemID = $med;
     if(isset($_GET['done'])){
-      $sql = "Update items Set number= '$number' Where ID=$itemID";
+      $sql = "Update supplier Set number= '$number' Where ID=$itemID";
       $change = $db->prepare($sql);
       $change->execute();
       echo "Database Updated";
       header("location:?id=$med&view=Edit+Supplier");
     }
     if(isset($_GET['delete'])){
-      $sql = "Delete from items Where ID=$itemID";
+      $sql = "Delete from supplier Where ID=$itemID";
       $change = $db->prepare($sql);
       $change->execute();
       header('location:pharmacist_home.php');
