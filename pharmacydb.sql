@@ -1,4 +1,5 @@
 -- phpMyAdmin SQL Dump
+<<<<<<< HEAD
 -- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
@@ -6,6 +7,15 @@
 -- Generation Time: May 25, 2022 at 04:33 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
+=======
+-- version 5.2.0
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: May 25, 2022 at 03:49 PM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 8.1.6
+>>>>>>> 449125c07e9f3bfd6a4403c3e493175e2b90bb57
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -59,7 +69,6 @@ CREATE TABLE `items` (
 --
 
 INSERT INTO `items` (`ID`, `Name`, `Description`, `Quantity`, `Price`, `Brand`, `Category`, `Photo`) VALUES
-(1, 'First Medicine', 'First Medicine', 10, 3.99, 'First', 'Pill', 'Fill'),
 (2, 'Second Medi', 'Second Medicine', 5, 1, 'Medi', 'Drink', 'Second'),
 (3, 'Panadol Advance', 'Blue Panadol', 30, 0.35, 'Panadol', 'Pill', 'PanadolAd'),
 (4, 'Ibuprofen', 'Anti-Inflammatory Drug', 25, 0.5, 'Ibuprofen', 'Pill', 'Ibuprofen'),
@@ -82,9 +91,16 @@ CREATE TABLE `orderdata` (
   `user` varchar(50) NOT NULL,
   `status` varchar(30) NOT NULL,
   `date` varchar(30) NOT NULL,
-  `supplier name` varchar(20) NOT NULL,
+  `supplierName` varchar(20) NOT NULL,
   `quantity` int(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `orderdata`
+--
+
+INSERT INTO `orderdata` (`OID`, `user`, `status`, `date`, `supplierName`, `quantity`) VALUES
+(1, 'testUser', 'onlyForTest', 'empty', 'Test', 1);
 
 -- --------------------------------------------------------
 
@@ -119,6 +135,7 @@ CREATE TABLE `pictures` (
 --
 
 INSERT INTO `pictures` (`PICTURE_ID`, `ID`, `PICTURE`) VALUES
+<<<<<<< HEAD
 (1, 1, 'uploadedfiles/med-1.jpg'),
 (2, 2, 'uploadedfiles/med-2.jpg'),
 (3, 3, 'uploadedfiles/Panadol-Advance.jpeg'),
@@ -127,6 +144,17 @@ INSERT INTO `pictures` (`PICTURE_ID`, `ID`, `PICTURE`) VALUES
 (7, 7, 'uploadedfiles/Voltarol.jpeg\r\n'),
 (8, 8, 'uploadedfiles/aspirin.jpeg'),
 (9, 9, 'uploadedfiles/spray.jpg'),
+=======
+(1, 1, 'uploadedfiles/med-1.jfif'),
+(2, 2, 'uploadedfiles/med-2.jpg'),
+(3, 3, 'uploadedfiles/Panadol-Advance.jpeg'),
+(4, 4, 'uploadedfiles/ibuprofen.jpeg'),
+(5, 5, 'uploadedfiles/Panadol-Extra.avif'),
+(6, 6, 'uploadedfiles/Panadol-Extra.avif'),
+(7, 7, 'uploadedfiles/Voltarol.jpeg\r\n'),
+(8, 8, 'uploadedfiles/aspirin.jpeg'),
+(9, 9, 'uploadedfiles/spray.jfif'),
+>>>>>>> 449125c07e9f3bfd6a4403c3e493175e2b90bb57
 (10, 10, 'uploadedfiles/sinus.png'),
 (11, 11, 'uploadedfiles/broncho.jpeg'),
 (12, 12, 'uploadedfiles/strepsils.jpeg');
@@ -157,7 +185,11 @@ CREATE TABLE `staff` (
 --
 
 CREATE TABLE `supplier` (
+<<<<<<< HEAD
   `ID` int(9) NOT NULL,
+=======
+  `ID` int(11) NOT NULL,
+>>>>>>> 449125c07e9f3bfd6a4403c3e493175e2b90bb57
   `name` varchar(20) NOT NULL,
   `number` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -190,10 +222,14 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`UID`, `Username`, `Email`, `Password`, `Type`) VALUES
 (111, 'A1AAA', 'A1@email.com', 'aaAA11', 'Customer'),
+<<<<<<< HEAD
 (222, 'B1BBB', 'B1@email.com', 'B1b111', 'Pharmacist'),
 (223, 'test2', 'Test12', 'test@gmail.com', 'Customer'),
 (555, 'admin', 'admin@gmail.com', 'admiN1', 'Admin'),
 (556, 'test1', 'Test11', 'test1@gmail.cm', 'Customer');
+=======
+(222, 'B1BBB', 'B1@email.com', 'bbBB11', 'Pharmacist');
+>>>>>>> 449125c07e9f3bfd6a4403c3e493175e2b90bb57
 
 -- --------------------------------------------------------
 
@@ -292,7 +328,7 @@ ALTER TABLE `items`
 -- AUTO_INCREMENT for table `orderdata`
 --
 ALTER TABLE `orderdata`
-  MODIFY `OID` int(9) NOT NULL AUTO_INCREMENT;
+  MODIFY `OID` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `payment`
@@ -316,7 +352,11 @@ ALTER TABLE `staff`
 -- AUTO_INCREMENT for table `supplier`
 --
 ALTER TABLE `supplier`
+<<<<<<< HEAD
   MODIFY `ID` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+=======
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+>>>>>>> 449125c07e9f3bfd6a4403c3e493175e2b90bb57
 
 --
 -- AUTO_INCREMENT for table `user`
