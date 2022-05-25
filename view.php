@@ -1,9 +1,9 @@
 <?php
 require('header.php');
 	// view more details clicked from somewhere
-	 session_start();
-	 if (!isset($_SESSION['userId']))
-	   header('location:reg_loginform.php?error=1');
+	session_start();
+	if (!isset($_SESSION['userId']))
+		header('location:reg_loginform.php?error=1');
 
 	extract($_GET);
 if(isset($view))
