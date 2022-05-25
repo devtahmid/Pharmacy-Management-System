@@ -3,6 +3,9 @@ session_start();
 if (!isset($_SESSION['userId']))
   header('location: login_form.php?error=1');
 
+  if($_SESSION['userType'] != 'Pharmacist')
+    header('location: index.php');
+
 try
 {
 
@@ -34,6 +37,8 @@ catch(PDOException $e)
 </header>
 <br/><br/>
 <section > <!-- class="text-center" removed -->
+<form method='post' action='addmedicine.php'><input class='add' type='submit' name='add' value='Add Medicine'></form>
+<br>
 <div class="container align-items-center">
 <!--<table class="table table-borderless"> -->
 <table class="table table-borderless">
@@ -83,4 +88,11 @@ foreach ($rs as $row)
 </section>
 <br/> <br/> <br/>
 </body>
+<style media="screen">
+  .add{
+    background-color: green;
+    margin-left: 1200px;
+    color: white;
+  }
+</style>
 </html>
