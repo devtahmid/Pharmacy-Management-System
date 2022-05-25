@@ -42,6 +42,8 @@ catch(PDOException $e)
 <div class="container align-items-center">
 <!--<table class="table table-borderless"> -->
 <table class="table table-borderless">
+	<form method='post' action='addSupplier.php'><input class='btn btn-secondary btn-lg btn-block add' type='submit' name='add' value='Add Supplier'></form>
+	<br/><br/>
 
 <?php
 foreach ($rs as $row)
