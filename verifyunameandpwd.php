@@ -16,8 +16,8 @@ else{ //good values, now need to check if they're in DB
   try{
   require('project_connection.php');
 
-  $conn = $db->prepare("SELECT * FROM users WHERE USERNAME= :un");
-  $conn->bindParam(':un' , $username);
+  $conn = $db->prepare("SELECT * FROM user WHERE Username= '$username'");
+//  $conn->bindParam(':un' , $username);
   $conn->execute();
 
   if ($conn->rowCount()==0) {
@@ -25,13 +25,15 @@ else{ //good values, now need to check if they're in DB
   }
   elseif ($conn->rowCount()==1) {
     $row=$conn->fetch();
-    $h_password=$row['PASSWORD'];
-    if (password_verify($password, $h_password)) {
+    $h_password=$row['Password'];
+    if ($h_password == $password) {
       //successful login
       session_start();
       $_SESSION['activeUser']=$username;
-      $_SESSION['userId']=$row['USER_ID'];
+      $_SESSION['userId']=$row['UID'];
+      $_SESSION['userType']=$row['Type'];
       header('location:index.php');
+
     }
     else {
       header('location:login_form.php?error=3');

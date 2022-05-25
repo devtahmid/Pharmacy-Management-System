@@ -3,26 +3,26 @@ require('header.php');
 	// view more details clicked from somewhere
 	session_start();
 	if (!isset($_SESSION['userId']))
-	  header('location:reg_loginform.php?error=1');
+		header('location:reg_loginform.php?error=1');
 
 	extract($_GET);
 if(isset($view))
 {
-	$_SESSION["auction_id"] = $auction_id;
+	$_SESSION["id"] = $id;
 }
 try
 	{
 		require('project_connection.php');
-		$stmt = $db->query("select * from auctions where AUCTION_ID =".$_SESSION['auction_id']);
-		$stmtpic = $db->query("select PICTURE from pictures where AUCTION_ID =".$_SESSION['auction_id']);
-    $stmt2 = $db->prepare("select USERNAME from users where USER_ID = ?");
+		$stmt = $db->query("select * from items where ID =".$_SESSION['id']);
+		$stmtpic = $db->query("select PICTURE from pictures where ID =".$_SESSION['id']);
+   // $stmt2 = $db->prepare("select USERNAME from users where USER_ID = ?");
 ?>
 
 	<body>
 		<header class="masthead bg-primary text-white text-center px-md-2">
 		    <div class="container d-flex align-items-center flex-column">
 		        <!-- Masthead Heading-->
-		        <h1 class="masthead-heading">Auction Details</h1>
+		        <h1 class="masthead-heading">Items Details</h1>
 		        <!-- Icon Divider-->
 		        <div class="divider-custom divider-light">
 		            <div class="divider-custom-line"></div>
@@ -37,13 +37,13 @@ try
 			<?php
 				if($row = $stmt->fetch())
 				{
-					echo "<h1 class='page-section-heading text-secondary font-weight'>".$row["AUCTION_NAME"]."</h1>";
+					echo "<h1 class='page-section-heading text-secondary font-weight'>".$row["Name"]."</h1>";
 					echo "<div class='row'";
 						echo "<tr>";
 						echo "<td rowspan = 5>";
 
 						if($stmtpic->rowCount() == 0)
-                echo "<img src='images/default.jpg' height='400px' width='400px'/><br /><br />";
+                echo "<img src='images/default.jpg' height='400px' width='400px'/>";
 						else
 							{
 								while($pic = $stmtpic->fetch())
@@ -53,46 +53,43 @@ try
 										echo "</div>";
 								}
 							}
+
+							echo "<div class='col-6 col-md-6'>";
+								echo "<form method='get' action='history.php'>";
+										 echo "<input type='hidden' name='id' value='".$row["ID"]."'/><br />";
+										 echo "<input class='btn btn-secondary btn-lg btn-block' type='submit' name='view' value='make purchase'/> <br />";
+								echo "</form>";
+
 						echo "</td>";
 						echo "</tr>";
+
 						echo "<tr>";
 						echo "<div class='col-6 col-md-4'>";
-	            echo "<td colspan=2> <h5> Description: ".$row["DESCRIPTION"]."</h4></td>";
-	          echo "</tr>";
-
-	          echo "<tr>";
-	          $stmt2->execute(array($row["OWNER_ID"]));
-	          if($user = $stmt2->fetch())
-	            echo "<td><h5> Sold by: ".$user[0]."</h4></td>";
-							echo "<td><h5>Start Date: ".$row["START_TIME_DATE"]."</h4></td>";
-
+	            echo "<td colspan=2> <h5> Price: ".$row["Price"]."</h4></td>";
 	          echo "</tr>";
 
 						echo "<tr>";
-							echo "<td><h5>Start Price: ".$row["START_PRICE"]."</h4></td>";
-							echo "<td><h5>End Date: ".$row["END_TIME_DATE"]."<h5></td>";
-						echo "</tr>";
-					echo "</div>";
-					echo "</div>";
-            echo "<td colspan=2 class='text-primary'><h3>Highest Bid: ";
-            if ($row["HIGHEST_BID"] == null)
-              echo "No Bids Yet..!!";
-            else
-              echo $row["HIGHEST_BID"];
+						echo "<div class='col-6 col-md-4'>";
+	            echo "<td colspan=2> <h5> Brand: ".$row["Brand"]."</h4></td>";
+	          echo "</tr>";
 
-							if($row["OWNER_ID"] != $_SESSION["userId"])
-							{
-								echo "<br/><br/>";
-								echo "<form method='POST' action='bid.php'>";
-								echo "<div class='form-group'>";
-								echo "<input class='btn btn-lg btn-secondary' type='submit' value='Create New Bid' name='newBid'>";
-								echo "</div>";
-								echo "</form>";
-							}
+	          						echo "<tr>";
+						echo "<div class='col-6 col-md-4'>";
+	            echo "<td colspan=2> <h5> Category: ".$row["Category"]."</h4></td>";
+	          echo "</tr>";
+
+	          						echo "<tr>";
+						echo "<div class='col-6 col-md-4'>";
+	            echo "<td colspan=2> <h5> Description: ".$row["Description"]."</h4></td>";
+	          echo "</tr>";
+
+					echo "</div>";
+					echo "</div>";
+
             echo "</td></h3>";
-					echo "</tr>  <br> <br/>";
+					echo "</tr>";
 
-					echo "<br/><br/><br/>";
+					echo "<br/>";
 				}
 			?>
 			</table>

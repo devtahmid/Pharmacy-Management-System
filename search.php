@@ -16,9 +16,10 @@ elseif (trim($search)=="" ) {
 	try
 	{
 		require('project_connection.php');
-		$sql = "select * from auctions where auction_name like '%".$search."%' and END_TIME_DATE>CURRENT_TIMESTAMP() order by start_time_date DESC ;";
+		$sql = "SELECT * FROM items WHERE Name like '%".$search."%';";
+		//echo "<script> alert('".$search."'); </script>";
 		$stmt = $db->query($sql);
-		$stmtpic = $db->prepare("select picture from pictures where auction_id = ? limit 1");
+		$stmtphoto = $db->prepare("SELECT PICTURE FROM pictures WHERE ID = ? limit 1");
 		$db = null;
 	}
 	catch(PDOException $e)
@@ -57,24 +58,18 @@ elseif (trim($search)=="" ) {
 					while($row = $stmt->fetch())
 					{
 				  	echo "<div class='col-6 col-md-4'>";
-							$stmtpic->execute(array($row["AUCTION_ID"]));
-							if ($pic = $stmtpic->fetch())
-								echo "<img src='".$pic[0]."' height='250px' width='250px'/><br />";
+							$stmtphoto->execute(array($row["ID"]));
+							if ($photo = $stmtphoto->fetch()){
+								//echo "<script> alert('".$photo[0]."'); </script>";
+								echo "<img src='".$photo[0]."' height='250px' width='250px'/><br />";
+							}
+
 							else
 							echo "<img src='images/default.jpg' height='250px' width='250px'/><br /><br />";
 
-							echo "<h3 class='text-bold'>".$row["AUCTION_NAME"]."</h3><br />";
-							echo "Starts on ".$row["START_TIME_DATE"];
-
-							echo "<h5> Ends on: &nbsp;&nbsp;".$row["END_TIME_DATE"]."</h5>";
-							echo "<h5>Starting Price: &nbsp;&nbsp; ".$row["START_PRICE"]."</h5>";
-							if($row["HIGHEST_BID"] == '')
-								echo "<h4 class='text-primary text-bolder'> No Bids Yet! </h4>";
-							else
-								echo "<h4 class='text-bold text-primary'> Highest Bid: ".$row["HIGHEST_BID"]." </h4><br />";
-
+							echo "<h3 class='text-bold'>".$row["Name"]."</h3><br />";
 							 echo "<form method='get' action='view.php'>";
-									 echo "<input type='hidden' name='auction_id' value='".$row["AUCTION_ID"]."'/><br />";
+									 echo "<input type='hidden' name='id' value='".$row["ID"]."'/><br />";
 									 echo "<input class='btn btn-secondary btn-lg btn-block' type='submit' name='view' value='View More Details'/> <br />";
 							 echo "</form>";
 						echo "</div>";

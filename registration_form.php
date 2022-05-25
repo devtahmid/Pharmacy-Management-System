@@ -45,8 +45,10 @@
      </div>
  </div>
  <form onSubmit="return checkRegistrationInputs();" method='post' action='reg_login.php'>
-    <label><h3>Name:</h3></label>
+    <label><h3>First Name:</h3></label>
     <input class='form-control' type='text' name='name' placeholder="maximum 50 characters" onkeyup="checkFN(this.value)" size='50' required><span id='name_msg'></span><br>
+    <label><h3>Last Name:</h3></label>
+    <input class='form-control' type='text' name='lname' placeholder="maximum 50 characters" onkeyup="checkFN(this.value)" size='50' required><br> 
 
     <label><h3>Email:</h3></label>
     <input class='form-control' type='text' name='mail' placeholder="abc@example.com (30 characters max)" onkeyup="checkMAIL(this.value)" size='30' required><span id='mail_msg'></span><br>
@@ -68,8 +70,12 @@
 
     <label><h3>Contact No:</h3></label>
     <input class='form-control' type='text' name='mobile' placeholder="8 digits for Bahrain, 8-10 others" onkeyup="checkMBL(this.value)" size='10' required><span id='mobile_msg'></span><br>
-    <label><h3>Address:</h3></label>
-    <input class='form-control' type='text' name='address' placeholder="Flat 1 Bldg 100 Road 200 Block 300, Manama, Bahrain" onkeyup="checkAddr(this.value)" size='50' required><span id='addr_msg'></span><br>
+    <label><h3>Building:</h3></label>
+    <input class='form-control' type='text' name='address' placeholder=""  onkeyup="checkAddr(this.value)" size='50' required><span id='addr_msg'></span><br>
+
+    <label><h3>Block:</h3></label>
+    <input class='form-control' type='text' name='block' placeholder=""  size='50' required><br>
+
 
     <input type='hidden' name='JSEnabled' value='false'>
     <input class='btn btn-lg btn-primary' type='submit' name='register_user' value='Register'>
