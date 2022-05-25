@@ -1,6 +1,6 @@
 <html>
 <?php
-require('header_special.php');
+require('header.php');
 echo "<br><br><br>";
 session_start();
 if (!isset($_SESSION['userId']))

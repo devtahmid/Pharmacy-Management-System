@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.3
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 20, 2022 at 01:12 PM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 7.4.29
+-- Generation Time: May 25, 2022 at 04:33 PM
+-- Server version: 10.4.14-MariaDB
+-- PHP Version: 7.4.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -33,7 +33,8 @@ CREATE TABLE `customer` (
   `Lname` varchar(10) NOT NULL,
   `Mobile` varchar(10) NOT NULL,
   `Building` varchar(30) NOT NULL,
-  `Block` int(5) NOT NULL
+  `Block` int(5) NOT NULL,
+  `UID` int(9) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -104,6 +105,35 @@ CREATE TABLE `payment` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `pictures`
+--
+
+CREATE TABLE `pictures` (
+  `PICTURE_ID` int(11) NOT NULL,
+  `ID` int(11) NOT NULL,
+  `PICTURE` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `pictures`
+--
+
+INSERT INTO `pictures` (`PICTURE_ID`, `ID`, `PICTURE`) VALUES
+(1, 1, 'uploadedfiles/med-1.jpg'),
+(2, 2, 'uploadedfiles/med-2.jpg'),
+(3, 3, 'uploadedfiles/Panadol-Advance.jpeg'),
+(4, 4, 'uploadedfiles/ibuprofen.jpeg'),
+(6, 6, 'uploadedfiles/panadol-extra.jpg'),
+(7, 7, 'uploadedfiles/Voltarol.jpeg\r\n'),
+(8, 8, 'uploadedfiles/aspirin.jpeg'),
+(9, 9, 'uploadedfiles/spray.jpg'),
+(10, 10, 'uploadedfiles/sinus.png'),
+(11, 11, 'uploadedfiles/broncho.jpeg'),
+(12, 12, 'uploadedfiles/strepsils.jpeg');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `staff`
 --
 
@@ -127,9 +157,18 @@ CREATE TABLE `staff` (
 --
 
 CREATE TABLE `supplier` (
+  `ID` int(9) NOT NULL,
   `name` varchar(20) NOT NULL,
   `number` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `supplier`
+--
+
+INSERT INTO `supplier` (`ID`, `name`, `number`) VALUES
+(1, 'supplier1', '1777666'),
+(2, 'supplier2', '1777222');
 
 -- --------------------------------------------------------
 
@@ -151,7 +190,10 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`UID`, `Username`, `Email`, `Password`, `Type`) VALUES
 (111, 'A1AAA', 'A1@email.com', 'aaAA11', 'Customer'),
-(222, 'B1BBB', 'B1@email.com', 'B1B111', 'Pharmacist');
+(222, 'B1BBB', 'B1@email.com', 'B1b111', 'Pharmacist'),
+(223, 'test2', 'Test12', 'test@gmail.com', 'Customer'),
+(555, 'admin', 'admin@gmail.com', 'admiN1', 'Admin'),
+(556, 'test1', 'Test11', 'test1@gmail.cm', 'Customer');
 
 -- --------------------------------------------------------
 
@@ -173,7 +215,9 @@ CREATE TABLE `wishlist` (
 -- Indexes for table `customer`
 --
 ALTER TABLE `customer`
-  ADD PRIMARY KEY (`CID`);
+  ADD PRIMARY KEY (`CID`),
+  ADD UNIQUE KEY `UID` (`UID`),
+  ADD KEY `UID_2` (`UID`);
 
 --
 -- Indexes for table `items`
@@ -194,11 +238,24 @@ ALTER TABLE `payment`
   ADD PRIMARY KEY (`PID`);
 
 --
+-- Indexes for table `pictures`
+--
+ALTER TABLE `pictures`
+  ADD PRIMARY KEY (`PICTURE_ID`),
+  ADD UNIQUE KEY `ID` (`ID`);
+
+--
 -- Indexes for table `staff`
 --
 ALTER TABLE `staff`
   ADD PRIMARY KEY (`Sid`),
   ADD UNIQUE KEY `CPR` (`CPR`);
+
+--
+-- Indexes for table `supplier`
+--
+ALTER TABLE `supplier`
+  ADD PRIMARY KEY (`ID`);
 
 --
 -- Indexes for table `user`
@@ -220,6 +277,12 @@ ALTER TABLE `wishlist`
 --
 
 --
+-- AUTO_INCREMENT for table `customer`
+--
+ALTER TABLE `customer`
+  MODIFY `CID` int(9) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
@@ -238,22 +301,44 @@ ALTER TABLE `payment`
   MODIFY `PID` int(9) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `pictures`
+--
+ALTER TABLE `pictures`
+  MODIFY `PICTURE_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
 -- AUTO_INCREMENT for table `staff`
 --
 ALTER TABLE `staff`
   MODIFY `Sid` int(9) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `supplier`
+--
+ALTER TABLE `supplier`
+  MODIFY `ID` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `UID` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=223;
+  MODIFY `UID` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=557;
 
 --
 -- AUTO_INCREMENT for table `wishlist`
 --
 ALTER TABLE `wishlist`
   MODIFY `WID` int(9) NOT NULL AUTO_INCREMENT;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `customer`
+--
+ALTER TABLE `customer`
+  ADD CONSTRAINT `fk_customer_user` FOREIGN KEY (`UID`) REFERENCES `user` (`UID`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

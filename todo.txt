@@ -1,0 +1,15 @@
+- session on every single page format and spelling
+
+- sign up 
+
+-3 types of headers
+
+-ahmed's purchase
+
+-add stock for pharmacist needs upload pic
+
+-add pharmaist in admin 
+
+- supplier -> add supplier, order from supplier , check order status
+
+- profile (if nothing to do)
