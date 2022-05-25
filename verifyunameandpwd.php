@@ -21,7 +21,7 @@ else{ //good values, now need to check if they're in DB
   $conn->execute();
 
   if ($conn->rowCount()==0) {
-      header('location:login_form.php?error=2');
+      header('location:login_form.php?error=3');
   }
   elseif ($conn->rowCount()==1) {
     $row=$conn->fetch();

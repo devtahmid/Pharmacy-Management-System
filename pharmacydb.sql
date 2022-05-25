@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 23, 2022 at 06:55 PM
+-- Generation Time: May 20, 2022 at 01:12 PM
 -- Server version: 10.4.24-MariaDB
--- PHP Version: 8.1.6
+-- PHP Version: 7.4.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -104,36 +104,6 @@ CREATE TABLE `payment` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pictures`
---
-
-CREATE TABLE `pictures` (
-  `PICTURE_ID` int(11) NOT NULL,
-  `ID` int(11) NOT NULL,
-  `PICTURE` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `pictures`
---
-
-INSERT INTO `pictures` (`PICTURE_ID`, `ID`, `PICTURE`) VALUES
-(1, 1, 'uploadedfiles/med-1.jfif'),
-(2, 2, 'uploadedfiles/med-2.jpg'),
-(3, 3, 'uploadedfiles/Panadol-Advance.jpeg'),
-(4, 4, 'uploadedfiles/ibuprofen.jpeg'),
-(5, 5, 'uploadedfiles/Panadol-Extra.avif'),
-(6, 6, 'uploadedfiles/Panadol-Extra.avif'),
-(7, 7, 'uploadedfiles/Voltarol.jpeg\r\n'),
-(8, 8, 'uploadedfiles/aspirin.jpeg'),
-(9, 9, 'uploadedfiles/spray.jfif'),
-(10, 10, 'uploadedfiles/sinus.png'),
-(11, 11, 'uploadedfiles/broncho.jpeg'),
-(12, 12, 'uploadedfiles/strepsils.jpeg');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `staff`
 --
 
@@ -224,13 +194,6 @@ ALTER TABLE `payment`
   ADD PRIMARY KEY (`PID`);
 
 --
--- Indexes for table `pictures`
---
-ALTER TABLE `pictures`
-  ADD PRIMARY KEY (`PICTURE_ID`),
-  ADD UNIQUE KEY `ID` (`ID`);
-
---
 -- Indexes for table `staff`
 --
 ALTER TABLE `staff`
@@ -273,12 +236,6 @@ ALTER TABLE `orderdata`
 --
 ALTER TABLE `payment`
   MODIFY `PID` int(9) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `pictures`
---
-ALTER TABLE `pictures`
-  MODIFY `PICTURE_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `staff`
