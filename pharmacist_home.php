@@ -1,4 +1,4 @@
-<?php require('header.php') ;
+<?php require('header_pharmacist.php') ;
 session_start();
 if (!isset($_SESSION['userId']))
   header('location: login_form.php?error=1');

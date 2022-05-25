@@ -1,16 +1,20 @@
 - session on every single page format and spelling
 
 
--3 types of headers
+-edit the 3 types of headers
 
 -ahmed's purchase
 
 -add stock for pharmacist needs upload pic
 
--add pharmaist in admin 
+-expiry meds list
 
-- supplier -> add supplier, order from supplier , check order status
+-delete pharmaist in admin 
+
+- supplier -> add supplier, order from supplier , check order status 
 
 - profile (if nothing to do)
 
 -khlid's add stock fields , PICTURE 
+
+-note MVC architecture 

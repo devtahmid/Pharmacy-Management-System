@@ -51,7 +51,7 @@
     $h_password=password_hash($password,PASSWORD_DEFAULT);
     $profilepic='default.jpg';
     //$mobile=$country_code.$mobile; will display like that otherwise searching for num becomes difficult in ajax registration
-    $sql="insert into user(Username,Email,Password,Type) values ( '$username', '$password', '$mail', 'Customer')";
+    $sql="insert into user(Username,Email,Password,Type) values ( '$username', '$mail', '$password', 'Customer')";
     $db->beginTransaction();
     $conn = $db->prepare($sql);
     $conn->execute();

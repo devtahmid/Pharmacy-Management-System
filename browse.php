@@ -3,7 +3,7 @@
 
     session_start();
     if (!isset($_SESSION['userId']))
-      header('location:reg_loginform.php?error=1');
+      header('location:login_form.php');
 
     ?>
 
