@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 25, 2022 at 09:56 PM
+-- Generation Time: May 26, 2022 at 06:35 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -44,7 +44,8 @@ CREATE TABLE `customer` (
 INSERT INTO `customer` (`CID`, `Fname`, `Lname`, `Mobile`, `Building`, `Block`, `UID`) VALUES
 (2, 'Shaikh', 'Rahman', '38012087', '222', 222, 563),
 (3, 'testtwo', 'testtwo', '38222222', '2222', 222, 564),
-(4, 'Shaikh', 'Rahman', '38012087', '444', 444, 565);
+(4, 'Shaikh', 'Rahman', '38012087', '444', 444, 565),
+(5, 'customer', 'three', '35225256', '441', 5236, 568);
 
 -- --------------------------------------------------------
 
@@ -84,18 +85,6 @@ INSERT INTO `items` (`ID`, `Name`, `Description`, `Quantity`, `Price`, `Brand`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `item_expiry`
---
-
-CREATE TABLE `item_expiry` (
-  `i_p_id` int(11) NOT NULL,
-  `item_id` int(9) NOT NULL,
-  `expiry` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `orderdata`
 --
 
@@ -103,7 +92,7 @@ CREATE TABLE `orderdata` (
   `OID` int(9) NOT NULL,
   `item_name` varchar(50) NOT NULL,
   `status` varchar(30) NOT NULL,
-  `supplier name` varchar(20) NOT NULL,
+  `supplier_id` int(20) NOT NULL,
   `quantity` int(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -155,9 +144,11 @@ CREATE TABLE `purchase` (
 --
 
 INSERT INTO `purchase` (`purchase_id`, `item_id`, `c_id`, `quantity`, `date`) VALUES
-(1, 7, 111, 1, '2022-05-25'),
-(2, 1, 111, 1, '2022-05-25'),
-(3, 1, 111, 1, '2022-05-25');
+(1, 7, 111, 3, '2022-05-25'),
+(2, 1, 111, 7, '2022-05-25'),
+(3, 3, 111, 2, '2022-05-24'),
+(4, 4, 568, 5, '2022-05-17'),
+(5, 10, 568, 20, '2022-04-12');
 
 -- --------------------------------------------------------
 
@@ -196,7 +187,8 @@ CREATE TABLE `supplier` (
 
 INSERT INTO `supplier` (`ID`, `name`, `number`) VALUES
 (1, 'supplier1', '1777666'),
-(2, 'supplier2', '1777222');
+(2, 'supplier2', '1777222'),
+(3, 'tahmid', '17777777');
 
 -- --------------------------------------------------------
 
@@ -218,14 +210,17 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`UID`, `Username`, `Email`, `Password`, `Type`) VALUES
 (111, 'A1AAA', 'A1@email.com', 'aaAA11', 'Customer'),
-(222, 'B1BBB', 'B1@email.com', 'B1b111', 'Pharmacist'),
 (223, 'test2', 'Test12', 'test@gmail.com', 'Customer'),
 (555, 'admin', 'admin@gmail.com', 'admiN1', 'Admin'),
-(556, 'test1', 'Test11', 'test1@gmail.cm', 'Customer'),
-(557, 'test1', 'Test11', 'test@gmail.com', 'Customer'),
 (563, 'Test11', 'Test11', 'shaikhtahmidurrahman10@gmail.com', 'Customer'),
 (564, 'test2222', 'Test22', 'testtwo@gmail.com', 'Customer'),
-(565, 'test22211', 'Test2222', 'shaikhtahmidurrahman10@gmail.com', 'Customer');
+(565, 'test22211', 'Test2222', 'shaikhtahmidurrahman10@gmail.com', 'Customer'),
+(566, 'pharma2', 'pharm2@gmail.com', 'Pharma2', 'Pharmacist'),
+(568, 'customer3', 'customer3@gmail.com', 'Customer3', 'Customer'),
+(569, 'pharma3', 'pharma3@gmail.com', 'Pharma3', 'Pharmacist'),
+(570, 'pharma4', 'pharma4@fdfd.cd', 'Pharma4', 'Pharmacist'),
+(571, 'Pharma5', 'pharma5@fdfd.dfs', 'Pharma5', 'Pharmacist'),
+(572, 'Pharma6', 'pharma6@dfd.csf', 'Pharma6', 'Pharmacist');
 
 --
 -- Indexes for dumped tables
@@ -246,17 +241,11 @@ ALTER TABLE `items`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Indexes for table `item_expiry`
---
-ALTER TABLE `item_expiry`
-  ADD PRIMARY KEY (`i_p_id`),
-  ADD KEY `item_id` (`item_id`);
-
---
 -- Indexes for table `orderdata`
 --
 ALTER TABLE `orderdata`
-  ADD PRIMARY KEY (`OID`);
+  ADD PRIMARY KEY (`OID`),
+  ADD KEY `supplier_id` (`supplier_id`);
 
 --
 -- Indexes for table `pictures`
@@ -300,19 +289,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `CID` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `CID` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
   MODIFY `ID` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
-
---
--- AUTO_INCREMENT for table `item_expiry`
---
-ALTER TABLE `item_expiry`
-  MODIFY `i_p_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `orderdata`
@@ -330,7 +313,7 @@ ALTER TABLE `pictures`
 -- AUTO_INCREMENT for table `purchase`
 --
 ALTER TABLE `purchase`
-  MODIFY `purchase_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `purchase_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `staff`
@@ -342,13 +325,13 @@ ALTER TABLE `staff`
 -- AUTO_INCREMENT for table `supplier`
 --
 ALTER TABLE `supplier`
-  MODIFY `ID` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ID` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `UID` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=566;
+  MODIFY `UID` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=573;
 
 --
 -- Constraints for dumped tables
@@ -361,10 +344,10 @@ ALTER TABLE `customer`
   ADD CONSTRAINT `fk_customer_user` FOREIGN KEY (`UID`) REFERENCES `user` (`UID`);
 
 --
--- Constraints for table `item_expiry`
+-- Constraints for table `orderdata`
 --
-ALTER TABLE `item_expiry`
-  ADD CONSTRAINT `fk_expiry_item` FOREIGN KEY (`item_id`) REFERENCES `items` (`ID`);
+ALTER TABLE `orderdata`
+  ADD CONSTRAINT `fk_order_supplier` FOREIGN KEY (`supplier_id`) REFERENCES `supplier` (`ID`);
 
 --
 -- Constraints for table `purchase`

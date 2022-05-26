@@ -35,7 +35,7 @@ try
 				if($row = $stmt->fetch())
 				{
 					echo "<h1 class='page-section-heading text-secondary font-weight'>".$row["Name"]."</h1>";
-					echo "<div class='row'";
+					echo "<div class='row'>";
 						echo "<tr>";
 						echo "<td rowspan = 5>";
 
