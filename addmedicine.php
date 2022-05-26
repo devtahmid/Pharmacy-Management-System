@@ -1,5 +1,5 @@
 <?php
-require('header.php') ;
+require('header_pharmacist.php') ;
 session_start();
 
 if (!isset($_SESSION['userId']))
