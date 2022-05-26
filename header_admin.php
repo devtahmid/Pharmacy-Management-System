@@ -23,7 +23,9 @@
                 </ul>
 
                 <ul class="navbar-nav ml-auto">
-
+                </li>
+                <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="logout.php">Log out</a>
+                </li>
                 </ul>
             </div>
         </nav>

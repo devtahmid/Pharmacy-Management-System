@@ -26,26 +26,56 @@ if ($_SESSION['userType']!="Admin") {
 
   <table class='table table-dark' style="text-align: center; widht:75%;">
   <tr>
+    <td></td>
   <td><b>Username</b></td>
-  <td><b>Remove</b></td>
+  <td></td>
   </tr>
 <tr>
-  <form method='post' action='add_pharmacist.php'>
+  <form method='post' action='delete_pharmacist.php'>
 
-    <td><input class='form-control' type='text' name='username' placeholder="5-20 characters" size='20' required><span id='login_username_msg'></span><br></td>
-    <td><input class='form-control' type='text' name='email' placeholder="example@xyz.com" size='40' required><span id='login_email_msg'></span></td>
-    <td><input class='form-control' type='text' name='password' placeholder="6-20 characters" size='20' required><span id='login_pwd_msg'></span></td>
+    <td></td>
+    <td >
+    <select class='form-control' style="width:30%; margin-left:35%;"  name='UID'>
+      <?php
+      try {
+
+      require("project_connection.php");
+      $db->beginTransaction();
+      $sql="SELECT UID, Username FROM user WHERE Type='Pharmacist'";
+      $result=$db->prepare($sql);
+      $result->execute();
+      //var_dump($result);
+      $rows=$result->fetchAll();
+      foreach ($rows as $row ) {
+      echo "<option value='".$row[UID]."'>".$row['Username']."</option>";
+      }
+
+
+      $db->commit();
+    }
+   catch(PDOException $ex)
+   {
+      die("Error Message".$ex->getMessage());
+      $db->rollback();
+  }
+       ?>
+</select>
+    </td>
+    <td></td>
 </tr>
 <tr>
   <td></td>
   <td style="margin:0 auto; display:block;">
-  <input class='btn btn-lg btn-primary submit' type='submit' name='add_pharmacist' value='Add Pharmacist'>
+  <input class='btn btn-lg btn-danger submit' type='submit' name='delete_pharmacist' value='Delete Pharmacist'>
 </td>
 <td></td>
 </tr>
 </form>
 
 </table>
-
+<br><br>
+<div style="text-align:center;">
+<a class="navbar-toggler navbar-toggler-right font-weight-bold bg-primary text-white rounded" href="admin_home.php">Home</a>
+</div>
 </body>
 </html>

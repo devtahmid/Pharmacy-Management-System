@@ -9,7 +9,7 @@ require("header_admin.php");
 <a class='btn btn-secondary btn-lg btn-block' href="admin_all_transactions.php">All transactions report</a><br>
 <a class='btn btn-secondary btn-lg btn-block' href="admin_monthly_sales_report.php">Monthly Sales Report</a><br>
 <a class='btn btn-secondary btn-lg btn-block' href="add_pharmacist_form.php">Add Pharmacist</a><br>
-<a class='btn btn-secondary btn-lg btn-block' href="">Delete Pharmacist</a>
+<a class='btn btn-secondary btn-lg btn-block' href="delete_pharmacist_form.php">Delete Pharmacist</a>
 
 </div>
 <?php

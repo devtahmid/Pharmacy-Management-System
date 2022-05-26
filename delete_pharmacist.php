@@ -11,12 +11,10 @@ try {
   extract($_POST);
     require("project_connection.php");
     $db->beginTransaction();
-    $sql="insert into user (Username, Email, Password, Type) values ('".$username."', '".$email."', '".$password."', 'Pharmacist')";
+    $sql="DELETE FROM user WHERE UID=".$UID;
     $result=$db->prepare($sql);
     $result->execute();
     //var_dump($result);
-    $insertId = $db->lastInsertId();
-    echo $insertId;
     $db->commit();
   }
  catch(PDOException $ex)
@@ -25,6 +23,6 @@ try {
     $db->rollback();
 }
 
-header("Location: admin_home.php?alertMsg=1");
+header("Location: admin_home.php?alertMsg=2");
 
  ?>
