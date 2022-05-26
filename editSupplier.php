@@ -1,5 +1,5 @@
 <?php
-require('header.php');
+require('header_pharmacist.php') ;
 	// view more details clicked from somewhere
 	 session_start();
 	 if (!isset($_SESSION['userId']))
@@ -90,6 +90,11 @@ try
 		</br> </br> </br>
 		</div>
 	</section>
+
+	<br><br>
+	<div style="text-align:center;">
+<a class="navbar-toggler navbar-toggler-right font-weight-bold bg-primary text-white rounded" href="pharmacist_home.php">Home</a>
+	</div>
 	</body>
 </html>
 <?php
@@ -102,6 +107,5 @@ try
 	{
 		die("Error Message".$e->getMessage());
 	}
-
 
 ?>

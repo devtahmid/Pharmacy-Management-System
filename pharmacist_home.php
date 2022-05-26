@@ -37,7 +37,6 @@ catch(PDOException $e)
 </header>
 <br/><br/>
 <section > <!-- class="text-center" removed -->
-<form method='post' action='addmedicine.php'><input class='add' type='submit' name='add' value='Add Medicine'></form>
 <br>
 <div class="container align-items-center">
 <!--<table class="table table-borderless"> -->

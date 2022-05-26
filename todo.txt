@@ -1,15 +1,15 @@
 - session on every single page format and spelling
 
 
--edit the 3 types of headers
 
--ahmed's purchase
+
 
 -add stock for pharmacist needs upload pic
 
 -expiry meds list
+-edit supplier needs loop
 
--delete pharmaist in admin 
+
 
 - supplier -> add supplier, order from supplier , check order status 
 

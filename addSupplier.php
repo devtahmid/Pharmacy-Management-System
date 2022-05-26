@@ -1,5 +1,5 @@
 <?php
-require('header.php') ;
+require('header_pharmacist.php') ;
 session_start();
 
 if (!isset($_SESSION['userId']))
@@ -52,7 +52,7 @@ if($_SESSION['userType'] != 'Pharmacist')
        require('project_connection.php');
        extract($_POST);
        if(isset($_POST['addSup'])){
-         $sql = "Insert into `supplier`(`ID`, `name`, `number`) VALUES (Null,'$supName','$number')";
+         $sql = "Insert into `supplier`( `name`, `number`) VALUES ('$supName','$number')";
          $change= $db->prepare($sql);
          $change->execute();
          echo "<script> alert('Database Updated') </script>";
@@ -63,5 +63,9 @@ if($_SESSION['userType'] != 'Pharmacist')
      }
 
      ?>
+     <br><br>
+     <div style="text-align:center;">
+   <a class="navbar-toggler navbar-toggler-right font-weight-bold bg-primary text-white rounded" href="pharmacist_home.php">Home</a>
+     </div>     
   </body>
 </html>
