@@ -10,6 +10,7 @@ if ($_SESSION['userType']!="Admin") {
 
 <html>
 <?php echo require('header_admin.php'); ?>
+<script src="reg_loginformvalidation.js" > </script>
 <body>
   <header class="masthead bg-primary text-white text-center px-md-2">
       <div class="container d-flex align-items-center flex-column">
@@ -32,9 +33,9 @@ if ($_SESSION['userType']!="Admin") {
   </tr>
 <tr>
   <form method='post' action='add_pharmacist.php'>
-    <td><input class='form-control' type='text' name='username' placeholder="5-20 characters" size='20' required><span id='login_username_msg'></span><br></td>
-    <td><input class='form-control' type='text' name='email' placeholder="example@xyz.com" size='40' required><span id='login_email_msg'></span></td>
-    <td><input class='form-control' type='text' name='password' placeholder="6-20 characters" size='20' required><span id='login_pwd_msg'></span></td>
+    <td><input class='form-control' type='text' name='username' placeholder="5-20 characters" size='20' onkeyup="checkUN(this.value,'login_username_msg')" required><span id='login_username_msg'></span><br></td>
+    <td><input class='form-control' type='text' name='email' placeholder="example@xyz.com" size='40' onkeyup="checkMAIL(this.value)" required><span id='mail_msg'></span></td>
+    <td><input class='form-control' type='text' name='password' placeholder="6-20 characters" size='20' onkeyup="checkPWD(this.value,'login_pwd_msg')" required><span id='login_pwd_msg'></span></td>
 </tr>
 <tr>
   <td></td>

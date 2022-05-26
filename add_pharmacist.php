@@ -24,7 +24,7 @@ try {
     die("Error Message".$ex->getMessage());
     $db->rollback();
 }
-echo "<script>alert('Pharmacist Added!');</script>";
-header("Location: admin_home.php");
+echo "<script> alert('Pharmacist Added!');</script>";
+header("Location: admin_home.php?alertMsg=1");
 
  ?>

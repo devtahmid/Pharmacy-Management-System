@@ -96,7 +96,7 @@ try
 		<div class='container'>
 			<h1 class='page-section-heading'>Public Questions</h1>
 		</br> </br> </br>
-			<?php require("public_questions.php");?>
+			<?php //require("public_questions.php");?>
 		</div>
 	</section>
 	</body>

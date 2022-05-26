@@ -71,5 +71,9 @@ if ($_SESSION['userType']!="Admin") {
     		 die("Error Message".$ex->getMessage());
      }
   ?>
+  <br><br>
+  <div style="text-align:center;">
+<a class="navbar-toggler navbar-toggler-right font-weight-bold bg-primary text-white rounded" href="admin_home.php">Home</a>
+  </div>
   </body>
   </html>
