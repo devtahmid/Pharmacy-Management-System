@@ -75,7 +75,17 @@ try
 	          <tr>
 						        <div class='col-6 col-md-4'>
 	                     <td colspan=2> <h5> Category: <?php echo $row["Category"]?></h4></td>
-                       <td> <input type='text' name='category' placeholder='Edit Category'> </td>
+                       <td>
+												 <input list='category' name='category' placeholder='Edit Category'>
+												 <datalist id="category">
+													  <option value="Pill">
+													  <option value="Gel">
+													  <option value="Tablet">
+													  <option value="Spray">
+													  <option value="Inhaler">
+														<option value="Drink">
+													</datalist>
+											 </td>
 	          </tr>
 
 	          						<tr>
@@ -83,6 +93,14 @@ try
 	            <td colspan=2> <h5> Description: <?php echo $row["Description"]?></h4></td>
               <td> <input type='text' name='description' placeholder='Edit Description'> </td>
 	          </tr>
+
+					</tr>
+
+											<tr>
+					<div class='col-6 col-md-4'>
+						<td colspan=2> <h5> Order Stock From Supplier: <?php echo $row["Quantity"]?></h4></td>
+						<td> <input type='number' name='quantity' min='<?php echo $row["Quantity"]?>' placeholder='<?php echo $row["Quantity"]?>'> </td>
+					</tr>
 
 
 					</div>
