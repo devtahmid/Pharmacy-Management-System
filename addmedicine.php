@@ -38,8 +38,22 @@ if($_SESSION['userType'] != 'Pharmacist')
     <title>Add Medicine</title>
   </head>
   <body>
+    <header class="masthead bg-primary text-white text-center px-md-2">
+        <div class="container d-flex align-items-center flex-column">
+            <!-- Masthead Heading-->
+            <h1 class="masthead-heading">Add Medicine to Stock</h1>
+            <!-- Icon Divider-->
+            <div class="divider-custom divider-light">
+                <div class="divider-custom-line"></div>
+                <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                <div class="divider-custom-line"></div>
+            </div>
+        </div>
+    </header>
+
+
     <div id='register' class='bg-secondary text-white container align-items-center'>
-    <form method='post'>
+    <form method='post' action='addmedicine_process.php'>
        <label><h3>Medicine Name:</h3></label>
        <input class='form-control' type='text' name='medName' size='50'><br>
        <label><h3>Description:</h3></label>
@@ -60,54 +74,11 @@ if($_SESSION['userType'] != 'Pharmacist')
        <label class='col-form-label-lg'><h3>Expiry Date:</h3></label>>
        <input class="form-control" type="date" name="expiry" <?php echo " min =".date('Y-m-d')." required />";?>
 
-       <label><h3>Photo:</h3></label>
-       <input class='form-control' type='file' name='photo' placeholder=""  size='50' required><br>
+       <label><h3>Photo(images<=5MB):</h3></label>
+       <input class='form-control' type='file' name='photo' placeholder=""  required><br>
 
        <input class='btn btn-lg btn-primary' type='submit' name='addMed' value='Add Medicine'>
      </form>
 
-     <?php
-     if((($_FILES['photo']['type']=='image/gif')
-     || ($_FILES['photo']['type']=='image/jpeg')
-     || ($_FILES['photo']['type']=='image/png')
-     || ($_FILES['photo']['type']=='image/pjpeg'))
-     && ($_FILES['photo']['size'] < 50000))
-     {
-       if ($_FILES['photo']['error'] > 0)
-       {
-         echo 'Return Code: '.$_FILES['photo']['error'].'<br/>';
-       }
-     }
-
-     if(file_exists('uploadedfiles'.$_FILES['photo']['name']))
-     {
-       echo $_FILES['photo']['name']."already exists.";
-     }
-     else
-       move_uploaded_file($_FILES['photo']['tmp_name'],'images/')
-
-      ?>
-
-   </div>
-     <?php
-     try {
-       require('project_connection.php');
-       extract($_POST);
-       if(isset($_POST['addMed'])){
-         $sql = "Insert into `items`(`ID`, `Name`, `Description`, `Quantity`, `Price`, `Brand`, `Category`, `Photo`) VALUES (Null,'$medName','$desc',$quant,$price,'$brand','$cate','$photo')";
-         $change= $db->prepare($sql);
-         $change->execute();
-
-         $sql = "Insert into `pictures`(`PICTURE_ID`,`ID`,`PICTURE`) VALUES (Null, Null,'images/test')";
-         $change= $db->prepare($sql);
-         $change->execute();
-         echo "<script> alert('Database Updated') </script>";
-       }
-     }
-     catch (PDOException $e) {
-       die("Error Message".$e->getMessage());
-     }
-
-     ?>
-  </body>
+       </body>
 </html>

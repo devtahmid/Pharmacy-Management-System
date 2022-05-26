@@ -14,7 +14,7 @@ if ($_SESSION['userType']!="Admin") {
   <header class="masthead bg-primary text-white text-center px-md-2">
       <div class="container d-flex align-items-center flex-column">
           <!-- Masthead Heading-->
-          <h1 class="masthead-heading">DElete Pharmacist</h1>
+          <h1 class="masthead-heading">Delete Pharmacist</h1>
           <!-- Icon Divider-->
           <div class="divider-custom divider-light">
               <div class="divider-custom-line"></div>

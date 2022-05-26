@@ -2,7 +2,7 @@
 
 
 
-
+-pharmacist medicines should show the STOCK COUNT 
 
 -add stock for pharmacist needs upload pic
 

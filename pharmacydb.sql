@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 26, 2022 at 06:35 AM
+-- Generation Time: May 26, 2022 at 11:06 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -80,7 +80,12 @@ INSERT INTO `items` (`ID`, `Name`, `Description`, `Quantity`, `Price`, `Brand`, 
 (9, 'Isotonic Nasal Hygiene Spray', 'A spray for nasal hygiene', 10, 2.79, 'Sterimar', 'Spray', 'SterimarSpray', '2027-05-25'),
 (10, 'Sinus Rinse Kit', 'Rinisng kit to apply for sinuses', 20, 17.99, 'NeilMed', 'Inhaler', 'RinseKit', '2028-05-25'),
 (11, 'BronchoStop Cough Syrup', 'Cough Syrup for treating fierce coughs', 30, 10.5, 'BronchoStop', 'Drink', 'BronchoSyrup', '2029-05-25'),
-(12, 'Strepsils Honey & Lemon', 'Tablet for soothing sore throats', 40, 4.79, 'Strepsils', 'Tablet', 'Strepsils', '2030-05-25');
+(12, 'Strepsils Honey & Lemon', 'Tablet for soothing sore throats', 40, 4.79, 'Strepsils', 'Tablet', 'Strepsils', '2030-05-25'),
+(13, 'diarrhoea medicine', 'for diarrhoea', 1, 12, 'Bromine', 'pill', 'diarrhoea.jpg', '2022-05-26'),
+(14, 'diarrhoea medicine2', 'for diarrhoea2', 2, 2, 'philix', 'pill', 'diarrhoea.jpg', '2022-05-26'),
+(15, 'diarrhoea medicine3', 'for diarrhoea3', 3, 3, 'venom', 'pill', 'diarrhoea.jpg', '2022-05-26'),
+(16, 'diarrhoea medicine4', 'for diarrhoea4', 4, 4, 'spider', 'pill', 'diarrhoea.jpg', '2022-05-26'),
+(17, 'diarrhoea medicine4', 'for diarrhoea4', 4, 4, 'spider', 'pill', 'diarrhoea.jpg', '2022-05-26');
 
 -- --------------------------------------------------------
 
@@ -123,7 +128,11 @@ INSERT INTO `pictures` (`PICTURE_ID`, `ID`, `PICTURE`) VALUES
 (9, 9, 'uploadedfiles/spray.jpg'),
 (10, 10, 'uploadedfiles/sinus.png'),
 (11, 11, 'uploadedfiles/broncho.jpeg'),
-(12, 12, 'uploadedfiles/strepsils.jpeg');
+(12, 12, 'uploadedfiles/strepsils.jpeg'),
+(13, 14, 'uploadedfiles/diarrhoea.jpg'),
+(14, 15, 'uploadedfiles/diarrhoea.jpg'),
+(15, 16, 'uploadedfiles/diarrhoea.jpg'),
+(16, 17, 'uploadedfiles/diarrhoea.jpg');
 
 -- --------------------------------------------------------
 
@@ -295,7 +304,7 @@ ALTER TABLE `customer`
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
-  MODIFY `ID` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `ID` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `orderdata`
@@ -307,7 +316,7 @@ ALTER TABLE `orderdata`
 -- AUTO_INCREMENT for table `pictures`
 --
 ALTER TABLE `pictures`
-  MODIFY `PICTURE_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `PICTURE_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `purchase`
