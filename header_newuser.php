@@ -26,10 +26,21 @@
                             <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
                     </form>
                 <ul class="navbar-nav ml-auto">
+                  <?php
+                    $pageName= basename($_SERVER['PHP_SELF']); /* Returns The Current PHP File Name */
+                    if ($pageName!="login_form.php"){
+                  ?>
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="login_form.php">Login</a>
                     </li>
+                  <?php
+                    }
+                    if ($pageName!="registration_form.php"){
+                  ?>
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="registration_form.php">Register</a>
                     </li>
+                  <?php
+                    }
+                  ?>
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="faq.php">FAQ</a>
                     </li>
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="about.php">About</a>

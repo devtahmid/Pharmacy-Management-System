@@ -2,9 +2,9 @@
 //Generate all transactions form
 session_start();
 if (!isset($_SESSION['userId']))
-  header('location:reg_loginform.php?error=1');
+  header('location:../reg_loginform.php?error=1');
 if ($_SESSION['userType']!="Admin") {
-  header('location:reg_loginform.php?error=1');
+  header('location:../reg_loginform.php?error=1');
 }
 ?>
 
@@ -28,7 +28,7 @@ if ($_SESSION['userType']!="Admin") {
 
     try
     	{
-    	require('project_connection.php');
+    	require('../project_connection.php');
     	 $db->beginTransaction();
 
     	 $sql="SELECT EXTRACT(YEAR_MONTH FROM date) FROM purchase GROUP BY EXTRACT(YEAR_MONTH FROM date)";

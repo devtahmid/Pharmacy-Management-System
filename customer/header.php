@@ -1,3 +1,4 @@
+<!-- header for logged in customer ONLY -->
 <!DOCTYPE html>
 <html lang="en">
     <head>

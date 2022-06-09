@@ -2,9 +2,9 @@
 //add Pharmacist form
 session_start();
 if (!isset($_SESSION['userId']))
-  header('location:reg_loginform.php?error=1');
+  header('location:../reg_loginform.php?error=1');
 if ($_SESSION['userType']!="Admin") {
-  header('location:reg_loginform.php?error=1');
+  header('location:../reg_loginform.php?error=1');
 }
 ?>
 
@@ -39,7 +39,7 @@ if ($_SESSION['userType']!="Admin") {
       <?php
       try {
 
-      require("project_connection.php");
+      require("../project_connection.php");
       $db->beginTransaction();
       $sql="SELECT UID, Username FROM user WHERE Type='Pharmacist'";
       $result=$db->prepare($sql);

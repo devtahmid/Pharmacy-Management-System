@@ -2,15 +2,15 @@
 //add Pharmacist form
 session_start();
 if (!isset($_SESSION['userId']))
-  header('location:reg_loginform.php?error=1');
+  header('location:../reg_loginform.php?error=1');
 if ($_SESSION['userType']!="Admin") {
-  header('location:reg_loginform.php?error=1');
+  header('location:../reg_loginform.php?error=1');
 }
 ?>
 
 <html>
 <?php echo require('header_admin.php'); ?>
-<script src="reg_loginformvalidation.js" > </script>
+<script src="../reg_loginformvalidation.js" > </script>
 <body>
   <header class="masthead bg-primary text-white text-center px-md-2">
       <div class="container d-flex align-items-center flex-column">
