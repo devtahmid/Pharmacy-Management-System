@@ -1,15 +1,13 @@
 <?php
 //need duplicate faq and about ;really need to learn docker to simulate the perfect environment
-//clicking on customer header wont work when user is on '/faq.php' because the links are in current directory. if links changed to customer/... then customer header wont work when on customer homepage because there is no customer folder inside customer folder
+//clicking on customer header wont work when user is on '/about.php' because the links are in current directory. if links changed to customer/... then customer header wont work when on customer homepage because there is no customer folder inside customer folder
 
 require('noCache.php');
 	//about page
 	session_start();
-	if (!isset($_SESSION['userId']))
-	 require('header_newuser.php');
- else{  //this needs to be removed when logout works properly because this faq page only new-user/unlogged-in-user will access
-	 if($_SESSION['userType'] == 'Customer')
-		 require('customer/header.php');
+	if (isset($_SESSION['userId']))
+ 		if($_SESSION['userType'] == 'Customer')
+		 	require('header.php');
  }
 ?>
 
