@@ -3,13 +3,13 @@ require('header.php');
 	// view more details clicked from somewhere
 	session_start();
 	if (!isset($_SESSION['userId']))
-		header('location:reg_loginform.php?error=1');
+		header('location:../reg_loginform.php?error=1');
 
 	extract($_GET);
 
 try
 	{
-		require('project_connection.php');
+		require('../project_connection.php');
 		$stmt = $db->query("select * from items where ID =".$id);
 		$stmtpic = $db->query("select PICTURE from pictures where ID =".$id);
    // $stmt2 = $db->prepare("select USERNAME from users where USER_ID = ?");
@@ -40,13 +40,13 @@ try
 						echo "<td rowspan = 5>";
 
 						if($stmtpic->rowCount() == 0)
-                echo "<img src='images/default.jpg' height='400px' width='400px'/>";
+                echo "<img src='../medicine_pictures/default.jpg' height='400px' width='400px'/>";
 						else
 							{
 								while($pic = $stmtpic->fetch())
 								{
 										echo "<div class='col-6 col-md-4 my-3'>";
-										echo "<img src='".$pic[0]."'height=400px width=400px/>";
+										echo "<img src='../medicine_pictures/".$pic[0]."'height=400px width=400px/>";
 										echo "</div>";
 								}
 							}
@@ -102,7 +102,7 @@ try
 	</body>
 </html>
 <?php
-		$db = null;
+		$db =null;
 	}
 	catch(PDOException $e)
 	{

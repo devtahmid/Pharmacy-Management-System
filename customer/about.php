@@ -2,13 +2,12 @@
 //need duplicate faq and about ;really need to learn docker to simulate the perfect environment
 //clicking on customer header wont work when user is on '/about.php' because the links are in current directory. if links changed to customer/... then customer header wont work when on customer homepage because there is no customer folder inside customer folder
 
-require('noCache.php');
 	//about page
 	session_start();
 	if (isset($_SESSION['userId']))
  		if($_SESSION['userType'] == 'Customer')
 		 	require('header.php');
- }
+
 ?>
 
 	<body>
@@ -33,7 +32,7 @@ require('noCache.php');
 						<td rowspan = 5>
 
 									<div class='col-6 col-md-4 my-3'>";
-										<img src='uploadedfiles/about.jpg' height=400px width=400px/>";
+										<img src='../website_pictures/about.jpg' height=400px width=400px/>";
 										</div>
 
 						<div class='col-6 col-md-6'>";

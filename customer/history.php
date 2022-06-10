@@ -1,7 +1,8 @@
 <?php
+//  PURCHASE HISTORY OF CUSTOMER 
 session_start();
 if (!isset($_SESSION['userId']))
-  header('location:reg_loginform.php?error=1');
+  header('location:../reg_loginform.php?error=1');
  ?>
 <html>
 <head>
@@ -25,7 +26,7 @@ if (!isset($_SESSION['userId']))
 
   try
   	{
-  	require('project_connection.php');
+  	require('../project_connection.php');
   	 $db->beginTransaction();
 
   	 $sql="SELECT * from purchase where c_id=".$_SESSION['userId'];

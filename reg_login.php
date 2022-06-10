@@ -61,6 +61,11 @@
     $conn = $db->prepare($sql);
     $conn->execute();
     $db->commit();
+    //default profile pic for new user
+    $sql = "INSERT INTO profile_pictures(UID,Profile_pic) values ('$Sid','default.jpg')";
+    $conn = $db->prepare($sql);
+    $conn->execute();
+    $db->commit();
     if ($conn->rowCount()==0) {
     header('location:registration_form.php?error=4');
     }
@@ -71,7 +76,7 @@
     session_start();
     $_SESSION['activeUser']=$username;
     $_SESSION['userId']=$Sid;
-    $_SESSION['userType']= 'Customer';
+    $_SESSION['userType']= 'Customer'; //only customer will use registration form
     header('location:index.php');
     }
     }

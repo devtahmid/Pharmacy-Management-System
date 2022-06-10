@@ -3,21 +3,18 @@
 
     session_start();
     if (!isset($_SESSION['userId']))
-      header('location:login_form.php');
+      header('location:../login_form.php');
 
-    ?>
-
-    <?php
     try
     {
 
-        require ("project_connection.php");
+        require ("../project_connection.php");
 
         $sql = "select * from items";
         $rs = $db->query($sql);
         $stmtpic = $db->prepare("select picture from pictures where id = ? limit 1");
         //$x = $rs->rowcount();
-
+      $db =null;
     }
     catch(PDOException $e)
     {
@@ -51,11 +48,9 @@
 
         echo "<div class='col-3 col-md-3' col-sm-12>";//column for image
 
-        $stmtpic->execute(array(
-            $row["ID"]
-        ));
-        if ($pic = $stmtpic->fetch()) echo "<img src='" . $pic[0] . "' height='250px' width='250px'/><br />";
-        else echo "<img src='images/default.jpg' height='250px' width='250px'/><br /><br />";
+        $stmtpic->execute(array($row["ID"]));
+        if ($pic = $stmtpic->fetch()) echo "<img src='../medicine_pictures/" . $pic[0] . "' height='250px' width='250px'/><br />";
+        else echo "<img src='../medicine_pictures/default.jpg' height='250px' width='250px'/><br /><br />";
 
         echo "</div>";// end image column
 
@@ -80,7 +75,7 @@
 
         if($_SESSION['userType'] == 'Pharmacist')
         {
-          echo "<form method='get' action='viewSupplier.php'>";
+          echo "<form method='get' action='../pharmacist/viewSupplier.php'>";
              echo "<input type='hidden' name='id' value='".$row["ID"]."'/><br />";
              echo "<input class='btn btn-secondary btn-lg btn-block' type='submit' name='view' value='View supplier'/> <br />";
           echo "</form>";

@@ -1,7 +1,6 @@
 <?php
 //need duplicate faq and about ;really need to learn docker to simulate the perfect environment
 //clicking on customer header wont work when user is on '/faq.php' because the links are in current directory. if links changed to customer/... then customer header wont work when on customer homepage because there is no customer folder inside customer folder
-		require('noCache.php');
 		session_start();
  	 if (isset($_SESSION['userId']))
 			if($_SESSION['userType'] == 'Customer')

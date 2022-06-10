@@ -4,32 +4,32 @@ require('header.php');
 echo "<br><br><br>";
 session_start();
 if (!isset($_SESSION['userId']))
-  header('location:reg_loginform.php?error=1');
+  header('location:../reg_loginform.php?error=1');
 $sid=$_SESSION['userId'];
 try{
-  require('project_connection.php');
-  $result= $db->prepare("SELECT * FROM users WHERE USER_ID= :id");
-  $result->bindParam(':id' , $sid);
-  $result->execute();
-  $addrResult=$db->prepare("SELECT * FROM addresses WHERE USER_ID= :id");
-  $addrResult->bindParam(':id' , $sid);
-  $addrResult->execute();
-  $userDetails= $result->fetch();
-  $userAddrs=$addrResult->fetchAll();
-  $username=$userDetails['USERNAME'];
-  $password=$userDetails['PASSWORD'];
-  $name=$userDetails['NAME'];
-  $contact_num=$userDetails['CONTACT_NUM'];
-  $email=$userDetails['EMAIL'];
-  $country=$userDetails['COUNTRY'];
-  $address=$userDetails['ADDRESS'];
-  $profile_pic=$userDetails['PROFILE_PIC'];
-  if ($userDetails['BUYER_RATING_COUNT']>0) {
-    $buyer_rating=$userDetails['BUYER_RATING_SUM']/$userDetails['BUYER_RATING_COUNT'];
-  }
-  if ($userDetails['SELLER_RATING_COUNT']>0) {
-    $seller_rating=$userDetails['SELLER_RATING_SUM']/$userDetails['SELLER_RATING_COUNT'];
-  }
+  require('../project_connection.php');
+  $userResult= $db->prepare("SELECT * FROM user WHERE UID= :id");
+  $userResult->bindParam(':id' , $sid);
+  $userResult->execute();
+  $customerResult=$db->prepare("SELECT * FROM customer WHERE UID= :id");
+  $customerResult->bindParam(':id' , $sid);
+  $customerResult->execute();
+  $pfpResult= $db->prepare("SELECT * FROM profile_pictures WHERE UID= :id");
+  $pfpResult->bindParam(':id', $sid);
+  $pfpResult->execute();
+  $userRow= $userResult->fetch();
+  $customerRow=$customerResult->fetch();
+  $pfpRow= $pfpResult->fetch();
+  $username=$userRow['Username'];
+  $password=$userRow['Password'];
+  $Fname=$customerRow['Fname'];
+  $Lname=$customerRow['Lname'];
+  $mobile=$customerRow['Mobile'];
+  $email=$userRow['Email'];
+  $building=$customerRow['Building'];
+  $block=$customerRow['Block'];
+  $country="Bahrain"; //check comment under form.select in above if statement
+  $profile_pic=$pfpRow['Profile_pic'];
   $db =null;
   }
   catch(PDOException $e){
@@ -40,7 +40,7 @@ try{
 ?>
 <head>
 
-<?php //changes i made ?>
+<?php //changes adarsh made ?>
     <style>
     #profile {
         margin-top:135px;
@@ -72,21 +72,25 @@ try{
       align-self: auto;
     }
     </style>
-<?php //changes i made ?>
+<?php //changes adarsh made ?>
 
   <script>
 <?php
+//declaring js variables with current value for validation. if user enters same value, validation message =""
 echo "username='".$username."'\n";
 echo "password='".$password."'\n";
-echo "name='".$name."'\n";
-echo "contact_num='".$contact_num."'\n";
+echo "Fname='".$Fname."'\n";
+echo "Lname='".$Lname."'\n";
+echo "mobile='".$mobile."'\n";
 echo "email='".$email."'\n";
-echo "country='".$country."'\n";
-echo "address='".$address."'\n";
+echo "building='".$building."'\n";
+echo "block='".$block."'\n";
+echo "country='Bahrain'\n"; //check comment under form.select in above if statement
+
 ?>
 MAX_FILE_SIZE=5000000;   //5MB
     var nameFlag=emailFlag=usernameFlag=passwordFlag=cnfmpasswordFlag=mobileFlag=addressFlag=fileUploadFlag=true; //true by default
-    function checkFN(name1) { //check full name
+    function checkFN(name1, id) { //check full name
       var nameExp =/^([a-z]{2,}\s)*[a-z]+$/i;
       if (name1.length == 0) {
         msg = "Enter name!";
@@ -103,8 +107,8 @@ MAX_FILE_SIZE=5000000;   //5MB
         color = "green";
         nameFlag = true;
       }
-      document.getElementById('name_msg').style.color = color;
-      document.getElementById('name_msg').innerHTML = msg;
+      document.getElementById(id).style.color = color;
+      document.getElementById(id).innerHTML = msg;
     }
 
     function checkUN(uname) {  //check username
@@ -136,7 +140,7 @@ MAX_FILE_SIZE=5000000;   //5MB
     }
 
     function checkPWD(pwd) { //check password
-
+      //console.log(pwd);
       var pwdExp = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
       if (pwd.length == 0) {
         msg = ""; //accepted to retain original values
@@ -153,8 +157,8 @@ MAX_FILE_SIZE=5000000;   //5MB
         color = "green";
         passwordFlag = true;
       }
-      document.getElementById('reg_pwd_msg').style.color = color;
-      document.getElementById('reg_pwd_msg').innerHTML = msg;
+      document.getElementById('profile_pwd_msg').style.color = color;
+      document.getElementById('profile_pwd_msg').innerHTML = msg;
       confirmPWD(document.forms[0].cnfm_password.value);
     }
 
@@ -269,6 +273,7 @@ MAX_FILE_SIZE=5000000;   //5MB
       }
       else if (!mailExp.test(mail)) {
         msg = "Invalid mail format";
+        //msg =mailExp.test(mail) ;
         color = "red";
         emailFlag = false;
       }
@@ -341,12 +346,12 @@ MAX_FILE_SIZE=5000000;   //5MB
     else if(type=="email" && result=="present"){
     document.getElementById('mail_msg').style.color ="red";
     document.getElementById('mail_msg').innerHTML ="Email already registered";
-    emailFlag=flag;
+    emailFlag=false;
     }
     else if(type=="mobile" && result=="present"){
     document.getElementById('mobile_msg').style.color ="red";
     document.getElementById('mobile_msg').innerHTML ="Number already registered";
-    mobileFlag=flag;
+    mobileFlag=false;
   }
   }
 
@@ -375,8 +380,11 @@ MAX_FILE_SIZE=5000000;   //5MB
     <img src='uploadedfiles/<?php echo $profile_pic; ?>'  class= 'profile-pic' alt='profilepic' >
     <input type="file" name="picfile" id='fileUpload'><span> images<=5MB</span><br><br>
 
-    <label><h3>Name:</h3></label>
-    <input class='form-control' type='text' name='name' placeholder="maximum 50 characters" onkeyup="checkFN(this.value)" size='50' value='<?php echo $name; ?>' required><span id='name_msg'></span><br>
+    <label><h3>First Name:</h3></label>
+    <input class='form-control' type='text' name='fname' placeholder="maximum 50 characters" onkeyup="checkFN(this.value, 'name_msg1')" size='50' value='<?php echo $Fname; ?>' required><span id='name_msg1'></span><br>
+
+    <label><h3>Last Name:</h3></label>
+    <input class='form-control' type='text' name='lname' placeholder="maximum 50 characters" onkeyup="checkFN(this.value, 'name_msg2')" size='50' value='<?php echo $Lname; ?>' required><span id='name_msg2'></span><br>
 
     <label><h3>Email:</h3></label>
     <input class='form-control' type='text' name='email' placeholder="abc@example.com (30 characters max)" onkeyup="checkMAIL(this.value)" size='30' value='<?php echo $email; ?>' required><span id='mail_msg'></span><br>
@@ -385,13 +393,15 @@ MAX_FILE_SIZE=5000000;   //5MB
     <input class='form-control' type='text' name='username' placeholder="5-20 characters" onkeyup="checkUN(this.value)" size='20' value='<?php echo $username; ?>' required><span id='reg_username_msg'></span><br>
 
     <label><h3>Password:</h3></label>
-    <input class='form-control' type='password' name='password' placeholder='Leave empty to retain original password' onkeyup="checkPWD(this.value)" size='20' value=''  style="width:250px;"><span id='reg_pwd_msg'></span><br>
+    <input class='form-control' type='password' name='password' placeholder='Leave empty to retain original' onkeyup="checkPWD(this.value)" size='20' value=''><span id='profile_pwd_msg'></span><br>
 
     <label><h3>Confirm Password:</h3></label>
-    <input class='form-control' type='password' name='cnfm_password' placeholder="6-20 characters" onkeyup="confirmPWD(this.value)" size='20' value=''><span id='cfmpwd_msg'></span><br>
+    <input class='form-control' type='password' name='cnfm_password' placeholder="6-20 char, must have 1 number, 1 uppercase, 1 lowercase" onkeyup="confirmPWD(this.value)" size='20' value=''><span id='cfmpwd_msg'></span><br>
   <label><h3>Mobile Number:</h3></label>
     <select  name="country_code" onchange="checkMBL(document.forms[0].mobile.value)" required >
     <?php
+    //country will be selected based on the country input while registering
+    //NOTE:pharmacy management system only has bahrain customers AND doesnt add country to db hence $country=bahrain by default at beginning of <script>
     if ($country=="Bahrain") {
       ?>
       <option value="+973" selected>Bahrain +973</option>

@@ -76,6 +76,7 @@ if ($_SESSION['userType']!="Admin") {
               }//foreach end
             echo "</table>";
           }//if isset end
+      $db =null;
     	}//try end
     	catch(PDOException $ex)
     	{

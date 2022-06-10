@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['userId']))
-  header('location: login_form.php?error=1');
+  header('location: ../login_form.php?error=1');
 
 require('header.php');
 	// Search box from index.php
@@ -9,22 +9,22 @@ require('header.php');
 	extract($_POST);
 
 	if(!isset($_SESSION['userId']))
-		header("Location:login_form.php?error=1");
+		header("Location:../login_form.php?error=1");
 
 if (!isset($search)) {
-	header("Location: index.php?error=5"); //nothing sent through form
+	header("Location: ../index.php?error=5"); //nothing sent through form
 }
 elseif (trim($search)=="" ) {
-	header("Location: index.php?error=6"); //search field empty
+	header("Location: ../index.php?error=6"); //search field empty
 }
 	try
 	{
-		require('project_connection.php');
+		require('../project_connection.php');
 		$sql = "SELECT * FROM items WHERE Name like '%".$search."%';";
 		//echo "<script> alert('".$search."'); </script>";
 		$stmt = $db->query($sql);
 		$stmtphoto = $db->prepare("SELECT PICTURE FROM pictures WHERE ID = ? limit 1");
-		$db = null;
+		$db =null;
 	}
 	catch(PDOException $e)
 	{
@@ -65,11 +65,11 @@ elseif (trim($search)=="" ) {
 							$stmtphoto->execute(array($row["ID"]));
 							if ($photo = $stmtphoto->fetch()){
 								//echo "<script> alert('".$photo[0]."'); </script>";
-								echo "<img src='".$photo[0]."' height='250px' width='250px'/><br />";
+								echo "<img src='../medicine_pictures/".$photo[0]."' height='250px' width='250px'/><br />";
 							}
 
 							else
-							echo "<img src='images/default.jpg' height='250px' width='250px'/><br /><br />";
+							echo "<img src='../medicine_pictures/default.jpg' height='250px' width='250px'/><br /><br />";
 
 							echo "<h3 class='text-bold'>".$row["Name"]."</h3><br />";
 							 echo "<form method='get' action='view.php'>";

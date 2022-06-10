@@ -18,7 +18,7 @@ try
 	$conn->execute();
 
 	 $db->commit();
-		$db = null;
+		$db =null;
 	}
 	catch(PDOException $ex)
 	{

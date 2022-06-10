@@ -9,7 +9,9 @@ if ($_SESSION['userType']!="Admin") {
 ?>
 
 <html>
-<?php echo require('header_admin.php'); ?>
+<?php
+require('header_admin.php');
+?>
 <body>
   <header class="masthead bg-primary text-white text-center px-md-2">
       <div class="container d-flex align-items-center flex-column">
@@ -65,6 +67,7 @@ if ($_SESSION['userType']!="Admin") {
               }//foreach end
             echo "</table>";
           }//if isset end
+      $db =null;
     	}//try end
     	catch(PDOException $ex)
     	{

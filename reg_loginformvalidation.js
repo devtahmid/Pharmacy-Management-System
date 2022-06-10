@@ -58,7 +58,7 @@ function checkPWD(pwd,id) { //check password
     color = "green";
     passwordFlag = true;
   }
-  document.getElementById(id).style.color = color;
+  document.getElementById(id).style.color = color; //id is used because same function use for login form where id is different
   document.getElementById(id).innerHTML = msg;
   if(id=="reg_pwd_msg")  //did this cus if user enters a valid passord after entering a valid comfirmation password
   confirmPWD(document.forms[1].cnfm_password.value);
