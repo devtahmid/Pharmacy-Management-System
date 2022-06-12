@@ -4,9 +4,9 @@ if (!isset($_SESSION['userId']))
   header('Location: ../login_form.php?error=1');
 
 extract($_GET);  //$id, $quantity and $maxQuantity
-echo $id." ----".$quantity."------".$_SESSION['myCart']["$id"]."----".$maxQuantity;
+//echo $id." ----".$quantity."------".$_SESSION['myCart']["$id"]."----".$maxQuantity;
 
-if(!isset($_SESSION['myCart']["$id"]))
+if(!isset($_SESSION['myCart']["$id"]))  //use cookie next time for cart
 $_SESSION['myCart']["$id"]=$quantity;
 else {
   if($_SESSION['myCart']["$id"]+$quantity>$maxQuantity){

@@ -10,6 +10,8 @@ try
 	 //insert purcahse in purchase table
 	 $sql="insert into purchase(item_id,c_id,quantity,date) values (:itemId, :customerId, :quantity, CURDATE())";
 	 $conn = $db->prepare($sql);
+	 $itemId=0;
+	 $itemQuantity=0;
 	 $conn->bindParam(':itemId', $itemId);
 	 $conn->bindParam(':quantity', $itemQuantity);
 	 foreach ($_SESSION['myCart'] as $itemId => $itemQuantity) {

@@ -72,13 +72,15 @@ try
 	          echo "</tr>";
 
 						echo "<tr><td><div>";
-							echo "<form method='get' action='cart_addition.php'>";
+							echo "<form method='get' class='col-8' action='cart_addition.php'>";
 									 echo "<input type='hidden' name='id' value='".$row["ID"]."'/><br />";
-									 echo "<h5 class='col-md-4'>Quantity: </h5>";
-									 echo "<input class='btn-lg col-md-4' type='number' name='quantity' value='1' min='1' max='".$row["Quantity"]."'> &nbsp;";
-									 echo "<input type='hidden' name='maxQuantity' value='".$row["Quantity"]."'/><br />";
-									echo "<input class='btn btn-secondary btn-lg' type='submit' name='cart' value='Add to Cart'/> <br>";
-									 echo "<input class='btn btn-secondary btn-lg btn-block' type='submit' name='purchase' value='make purchase'/>";
+									 echo "<h5 class='col-md-3'>Quantity: </h5>";
+									 echo "<div class='row'>";
+									 echo "<input class='btn-lg col-md-6 col-lg-8' type='number' name='quantity' value='1' min='1' max='".$row["Quantity"]."'>";
+									 echo "<input type='hidden' name='maxQuantity' value='".$row["Quantity"]."'/>";
+									echo "<input class='btn btn-secondary btn-lg col-md-6 col-lg-4' type='submit' name='cart' value='Add to Cart'/>";
+									echo "</div>";
+									 echo "<input class='btn btn-secondary btn-lg col-12 btn-block' type='submit' name='purchase' value='make purchase'/>";
 							echo "</form>";
 
 						echo "</div></td>";

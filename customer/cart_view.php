@@ -50,6 +50,7 @@ elseif (isset($_SESSION['myCart'])) {
     require('../project_connection.php');
     $sql="SELECT Name, Quantity, Price, Brand, Category FROM items WHERE ID=:id AND Quantity>0 AND expiry > CURRENT_DATE()";
     $result= $db->prepare($sql);
+    $itemId=0;
     $result->bindParam(':id' , $itemId);
     foreach ($_SESSION['myCart'] as $itemId => $itemQuantity) {
       //bindParam binds the parameter so if value changed, new val of param will be exeuted
