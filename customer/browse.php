@@ -10,7 +10,7 @@
 
         require ("../project_connection.php");
 
-        $sql = "select * from items";
+        $sql = "select * from items WHERE Quantity>0 AND expiry>CURRENT_DATE()";
         $rs = $db->query($sql);
         $stmtpic = $db->prepare("select picture from pictures where id = ? limit 1");
         //$x = $rs->rowcount();
@@ -58,10 +58,10 @@
 
         echo "<h3 class='text'>" . $row["Name"] . "</h3><br />";
         echo "<h5 class='text'>Description: " . $row["Description"] . "</h5><br />";
-        echo "<h5 class='text'>Price: " . $row["Price"] . "</h5><br />";
+        echo "<h5 class='text'>Price(BD): " . $row["Price"] . "</h5><br />";
         echo "<h5 class='text'>Brand: " . $row["Brand"] . "</h5><br />";
         echo "<h5 class='text'>Category: " . $row["Category"] . "</h5><br />";
-      //  echo "<h5 class='text'>" . $row["Photo"] . "</h5><br />";
+
 
         if($_SESSION['userType'] == 'Pharmacist')
         {

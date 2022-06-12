@@ -57,12 +57,8 @@
     $conn->execute();
     $Sid= $db->lastInsertId();
     echo $Sid;
-    $sql="insert into customer(Fname,Lname,Mobile,Building,Block, UID) values ('$name', '$lname', '$mobile', '$address', '$block', $Sid)";
-    $conn = $db->prepare($sql);
-    $conn->execute();
-    $db->commit();
-    //default profile pic for new user
-    $sql = "INSERT INTO profile_pictures(UID,Profile_pic) values ('$Sid','default.jpg')";
+    //default profile pic for new user is 'default.jpg'
+    $sql="insert into customer(Fname,Lname,Mobile,Building,Block, UID, Profile_pic) values ('$name', '$lname', '$mobile', '$address', '$block', $Sid, 'default.jpg')";
     $conn = $db->prepare($sql);
     $conn->execute();
     $db->commit();

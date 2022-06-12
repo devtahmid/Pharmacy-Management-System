@@ -24,11 +24,12 @@
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="browse.php">Browse</a>
                     </li>
                 </ul>
-                    <form class="form-inline my-2 my-lg-0" action="search.php" method="post">
-                        <input id="main_search" class="form-control mr-sm-2" type="search" name="search" placeholder="Search" aria-label="Search">
-                            <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
-                    </form>
+                <form class="form-inline" action="search.php" method="post">
+                <input id="main_search" class="form-control col-lg-8 col-sm-8 col-md-8 mr-2" type="search" name="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-primary col-sm-2 col-md-2" type="submit">Search</button>
+                </form>
                 <ul class="navbar-nav ml-auto">
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="cart_view.php">Cart</a>
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="history.php">Purchases</a>
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="profile.php" >View Profile</a>
                     </li>

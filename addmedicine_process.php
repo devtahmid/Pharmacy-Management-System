@@ -3,7 +3,7 @@ try {
   require('project_connection.php');
   extract($_POST);
   if(isset($_POST['addMed'])){
-    $sql = "Insert into `items`(`Name`, `Description`, `Quantity`, `Price`, `Brand`, `Category`, `Photo`) VALUES ('$medName','$desc',$quant,$price,'$brand','$cate','$photo')";
+    $sql = "Insert into `items`(`Name`, `Description`, `Quantity`, `Price`, `Brand`, `Category`) VALUES ('$medName','$desc',$quant,$price,'$brand','$cate')";
     $change= $db->prepare($sql);
     $change->execute();
      $insertId = $db->lastInsertId();

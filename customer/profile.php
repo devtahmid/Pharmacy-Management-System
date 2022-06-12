@@ -4,7 +4,7 @@ require('header.php');
 echo "<br><br><br>";
 session_start();
 if (!isset($_SESSION['userId']))
-  header('location:../reg_loginform.php?error=1');
+  header('Location: ../login_form.php?error=1');
 $sid=$_SESSION['userId'];
 try{
   require('../project_connection.php');
@@ -140,7 +140,7 @@ MAX_FILE_SIZE=5000000;   //5MB
     }
 
     function checkPWD(pwd) { //check password
-      //console.log(pwd);
+      console.log(pwd);
       var pwdExp = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
       if (pwd.length == 0) {
         msg = ""; //accepted to retain original values
@@ -171,7 +171,7 @@ MAX_FILE_SIZE=5000000;   //5MB
         msg = "";
         cnfmpasswordFlag = false;
       }
-      else if (document.getElementById('reg_pwd_msg').innerHTML== 'Invalid password') {
+      else if (document.getElementById('cfmpwd_msg').innerHTML== 'Invalid password') {
         msg="enter valid password first";
         color="red";
         cnfmpasswordFlag=false;

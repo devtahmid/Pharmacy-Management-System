@@ -1,4 +1,5 @@
 <?php
+//from AUCTION WEBSITE 
 require("header.php");
 session_start();
   extract($_POST);

@@ -65,8 +65,10 @@
     <label><h3>Country:</h3></label>
     <select class='form-control' name="country_code" onchange="checkMBL(document.forms[1].mobile.value)" required >
       <option value="+973" selected>Bahrain</option>
+      <!--
       <option value="+966">Saudi Arabia</option>
       <option value="+971">United Arab Emirates</option>
+    -->
     </select><br>
 
     <label><h3>Contact No:</h3></label>

@@ -55,7 +55,7 @@ foreach ($rs as $row)
 
 		echo "<h3 class='text'>" . $row["name"] . "</h3><br />";
 		echo "<h5 class='text'>Number: " . $row["number"] . "</h5><br />";
-	//  echo "<h5 class='text'>" . $row["Photo"] . "</h5><br />";
+
 
 		if($_SESSION['userType'] == 'Pharmacist')
 		{

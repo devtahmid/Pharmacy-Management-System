@@ -1,8 +1,8 @@
 <?php
-//  PURCHASE HISTORY OF CUSTOMER 
+//  PURCHASE HISTORY OF CUSTOMER
 session_start();
 if (!isset($_SESSION['userId']))
-  header('location:../reg_loginform.php?error=1');
+  header('Location: ../login_form.php?error=1');
  ?>
 <html>
 <head>
@@ -29,7 +29,7 @@ if (!isset($_SESSION['userId']))
   	require('../project_connection.php');
   	 $db->beginTransaction();
 
-  	 $sql="SELECT * from purchase where c_id=".$_SESSION['userId'];
+  	 $sql="SELECT * from purchase where c_id=".$_SESSION['userId']." ORDER BY date desc";
   	 $stmt1 = $db->prepare($sql);
   	 $stmt1->execute();
 

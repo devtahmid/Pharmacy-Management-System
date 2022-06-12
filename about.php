@@ -35,7 +35,7 @@ require('noCache.php');
 						<td rowspan = 5>
 
 									<div class='col-6 col-md-4 my-3'>";
-										<img src='uploadedfiles/about.jpg' height=400px width=400px/>";
+										<img src='website_pictures/about.jpg' height=400px width=400px/>";
 										</div>
 
 						<div class='col-6 col-md-6'>";
