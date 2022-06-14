@@ -57,10 +57,10 @@ if($_SESSION['userType'] != 'Pharmacist')
        <label><h3>Medicine Name:</h3></label>
        <input class='form-control' type='text' name='medName' size='50'><br>
        <label><h3>Description:</h3></label>
-       <input class='form-control' type='text' name='desc' size='100' required><br>
+       <input class='form-control' type='text' name='description' size='100' required><br>
 
        <label><h3>Quantity:</h3></label>
-       <input class='form-control' type='text' name='quant' size='30' ><br>
+       <input class='form-control' type='text' name='quantity' size='30' ><br>
 
        <label><h3>Price:</h3></label>
        <input class='form-control' type='text' name='price' size='20' required><br>
@@ -69,7 +69,7 @@ if($_SESSION['userType'] != 'Pharmacist')
        <input class='form-control' type='text' name='brand' size='20'><br>
 
        <label><h3>Category:</h3></label>
-       <input class='form-control' type='text' name='cate' size='50'>
+       <input class='form-control' type='text' name='category' size='50'>
 
        <label class='col-form-label-lg'><h3>Expiry Date:</h3></label>>
        <input class="form-control" type="date" name="expiry" <?php echo " min =".date('Y-m-d')." required />";?>
@@ -81,4 +81,5 @@ if($_SESSION['userType'] != 'Pharmacist')
      </form>
 
        </body>
+       <script src="stock_validation.js"></script>
 </html>

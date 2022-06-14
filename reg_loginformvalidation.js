@@ -1,4 +1,4 @@
-var nameFlag=emailFlag=usernameFlag=passwordFlag=cnfmpasswordFlag=mobileFlag=addressFlag=blockFlagfalse;
+var nameFlag=emailFlag=usernameFlag=passwordFlag=cnfmpasswordFlag=mobileFlag=addressFlag=blockFlag=false;
 function checkFN(name) { //check full name
   var nameExp =/^([a-z]+\s)*[a-z]+$/i;
   if (name.length == 0) {

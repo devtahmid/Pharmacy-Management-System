@@ -1,17 +1,17 @@
 <?php require('header_pharmacist.php') ;
 session_start();
 if (!isset($_SESSION['userId']))
-  header('location: login_form.php?error=1');
+  header('location: ../login_form.php?error=1');
 
   if($_SESSION['userType'] != 'Pharmacist')
-    header('location: index.php');
+    header('../location: index.php');
 
 try
 {
 
-    require ("project_connection.php");
+    require ("../project_connection.php");
 
-    $sql = "select * from items WHERE Quantity>0 AND expiry>CURRENT_DATE()";
+    $sql = "select * from items WHERE Quantity>0 AND expiry>CURRENT_DATE() AND Status='present'";
     $rs = $db->query($sql);
     $stmtpic = $db->prepare("select picture from pictures where id = ? limit 1");
     //$x = $rs->rowcount();
@@ -53,14 +53,15 @@ foreach ($rs as $row)
     $stmtpic->execute(array(
         $row["ID"]
     ));
-    if ($pic = $stmtpic->fetch()) echo "<img src='" . $pic[0] . "' height='250px' width='250px'/><br />";
-    else echo "<img src='images/default.jpg' height='250px' width='250px'/><br /><br />";
+    if ($pic = $stmtpic->fetch()) echo "<img src='../medicine_pictures/". $pic[0] ."' height='250px' width='250px'/><br />";
+    else echo "<img src='../medicine_pictures/default.jpg' height='250px' width='250px'/><br /><br />";
 
     echo "</div>";// end image column
 
     echo "<div class='col-9 col-md-9' col-sm-12>";//column for data
 
     echo "<h3 class='text'>" . $row["Name"] . "</h3><br />";
+    echo "<h3 class='text'> In Stock: " . $row["Quantity"] . "</h3><br />";
     //echo "<h5 class='text'>" . $row["Photo"] . "</h5><br />";   why are we displaying picture names? also item table photo column removed. use picture table
     echo "<br> <br>";
 
@@ -87,11 +88,15 @@ foreach ($rs as $row)
 </section>
 <br/> <br/> <br/>
 </body>
-<style media="screen">
-  .add{
-    background-color: green;
-    margin-left: 1200px;
-    color: white;
+<?php
+extract($_GET);
+if (isset($msg)) {
+  if ($msg==1) {
+    echo "<script>alert('tryring to access view without itemID');</script>";
   }
-</style>
+
+}
+
+
+ ?>
 </html>

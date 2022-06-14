@@ -1,19 +1,16 @@
 <?php
-require ('header.php');
+require ('header_pharmacist.php');
 
 session_start();
 if (!isset($_SESSION['userId']))
-	header('location:reg_loginform.php?error=1');
+	header('location:../reg_loginform.php?error=1');
 
-?>
-
-<?php
 try
 {
 
-		require ("project_connection.php");
+		require ("../project_connection.php");
 
-		$sql = "select * from supplier";
+		$sql = "select * from supplier WHERE contract='active'";
 		$rs = $db->query($sql);
 	//	$stmtpic = $db->prepare("select picture from pictures where id = ? limit 1");
 		//$x = $rs->rowcount();
@@ -27,7 +24,7 @@ catch(PDOException $e)
 <header class="masthead bg-primary text-white text-center px-md-3">
 <div class="container d-flex align-items-center flex-column">
 <!-- Masthead Heading-->
-<h1 class="masthead-heading">Items</h1>
+<h1 class="masthead-heading">Suppliers</h1>
 <!-- Icon Divider-->
 <div class="divider-custom divider-light">
 <div class="divider-custom-line"></div>
@@ -38,13 +35,15 @@ catch(PDOException $e)
 </div>
 </header>
 <br/><br/>
-<section > <!-- class="text-center" removed -->
+<!-- class="text-center" removed -->
 <div class="container align-items-center">
 <!--<table class="table table-borderless"> -->
-<table class="table table-borderless">
-	<form method='post' action='addSupplier.php'><input class='btn btn-secondary btn-lg btn-block add' type='submit' name='add' value='Add Supplier'></form>
-	<br/><br/>
-
+<div class="container d-flex align-items-center flex-column">
+<button onclick="location.href = 'addSupplier.php';" class='btn btn-success btn-lg col-md-4 col-lg-4'>
+	Add Supplier
+</button>
+</div>
+<br><br>
 <?php
 foreach ($rs as $row)
 {
@@ -60,7 +59,7 @@ foreach ($rs as $row)
 		if($_SESSION['userType'] == 'Pharmacist')
 		{
 			echo "<form method='get' action='editSupplier.php'>";
-				 echo "<input type='hidden' name='id' value='".$row["ID"]."'/><br />";
+				 echo "<input type='hidden' name='supplierId' value='".$row["ID"]."'/><br />";
 				 echo "<input class='btn btn-secondary btn-lg btn-block' type='submit' name='view' value='Edit Supplier'/> <br />";
 			echo "</form>";
 		}
@@ -79,8 +78,17 @@ foreach ($rs as $row)
 ?>
 
 </div>
-</table>
-</section>
-<br/> <br/> <br/>
+
+<?php
+extract($_GET);
+if (isset($msg)) {
+	if ($msg==1)
+		echo "<script>alert('Supplier details updated')</script>";
+	elseif ($msg==2)
+		echo "<script>alert('Supplier contract terminated')</script>";
+
+}
+
+?>
 </body>
 </html>

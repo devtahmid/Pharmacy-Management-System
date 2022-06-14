@@ -1,4 +1,5 @@
 <?php
+//USED TO VERIFY USERNAME AND PASSWORD AFTER USER SUBMITS LOG IN FORM...COMES FROM reg_login.php
 require("noCache.php");
 //validate username and password
 extract($_GET);

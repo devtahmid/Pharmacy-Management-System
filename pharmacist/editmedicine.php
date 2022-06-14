@@ -1,21 +1,24 @@
 <?php
-require('header.php');
+require('header_pharmacist.php');
 	// view more details clicked from somewhere
 	 session_start();
 	 if (!isset($_SESSION['userId']))
-	   header('location:reg_loginform.php?error=1');
+	   header('location:../reg_loginform.php?error=1');
 
    if($_SESSION['userType'] != 'Pharmacist')
-     header('location: index.php');
+     header('location: ../index.php');
 
 	extract($_GET);
 if(isset($view))
 {
-	$_SESSION["id"] = $id;
+	$_SESSION["id"] = $id; //$id comes from pharmacist home
+}
+else {
+	header('location: pharmacist_home.php?msg=1'); //tryring to access view without itemID
 }
 try
 	{
-		require('project_connection.php');
+		require('../project_connection.php');
 		$stmt = $db->query("select * from items where ID =".$_SESSION['id']);
 		$stmtpic = $db->query("select PICTURE from pictures where ID =".$_SESSION['id']);
    // $stmt2 = $db->prepare("select USERNAME from users where USER_ID = ?");
@@ -47,36 +50,36 @@ try
 						echo "<td rowspan = 5>";
 
 						if($stmtpic->rowCount() == 0)
-                echo "<img src='images/default.jpg' height='400px' width='400px'/>";
+                echo "<img src='../medicine_pictures/default.jpg' height='400px' width='400px'/>";
 						else
 							{
-								while($pic = $stmtpic->fetch())
-								{
-										echo "<div class='col-6 col-md-4 my-3'>";
-										echo "<img src='".$pic[0]."'height=400px width=400px/>";
-										echo "</div>";
-								}
+								$pic = $stmtpic->fetch();
+									echo "<div class='col-6 col-md-4 my-3'>";
+									echo "<img src='../medicine_pictures/".$pic['PICTURE']."'height=400px width=400px/>";
+									echo "</div>";
 							}
             ?>
 						</td>
 						</tr>
 						<tr>
 						<div class='col-6 col-md-4'>
-	            <td colspan=2> <h5> Price: <?php echo $row["Price"]?></h4></td>
-              <td> <input type='text' name='price' placeholder='Edit Price'> </td>
+	            <td colspan=2> <h4> Price: </h4></td>
+              <td> <input class='btn-lg col-md-9 col-lg-8' type='text' name='price' value='<?php echo $row["Price"];?>' placeholder='Edit Price'> </td>
 	          </tr>
+					</div>
 
 						<tr>
 						<div class='col-6 col-md-4'>
-	            <td colspan=2> <h5> Brand: <?php echo $row["Brand"]?></h4></td>
-              <td> <input type='text' name='brand' placeholder='Edit Brand'> </td>
+	            <td colspan=2> <h4> Brand:</h4></td>
+              <td> <input class='btn-lg col-md-9 col-lg-8' type='text' name='brand' value='<?php echo $row["Brand"];?>' placeholder='Edit Brand'> </td>
 	          </tr>
+					</div>
 
 	          <tr>
 						        <div class='col-6 col-md-4'>
-	                     <td colspan=2> <h5> Category: <?php echo $row["Category"]?></h4></td>
+	                     <td colspan=2> <h4> Category:</h4></td>
                        <td>
-												 <input list='category' name='category' placeholder='Edit Category'>
+												 <input class='btn-lg col-md-9 col-lg-8' id='categoryList' list='category' name='category' value='<?php echo $row["Category"]?>' onfocus="this.value=''" onchange="this.blur()" onkeyup="listChange()"  placeholder='Edit Category'>
 												 <datalist id="category">
 													  <option value="Pill">
 													  <option value="Gel">
@@ -86,36 +89,37 @@ try
 														<option value="Drink">
 													</datalist>
 											 </td>
+										 </div>
 	          </tr>
 
 	          						<tr>
 						<div class='col-6 col-md-4'>
-	            <td colspan=2> <h5> Description: <?php echo $row["Description"]?></h4></td>
-              <td> <input type='text' name='description' placeholder='Edit Description'> </td>
+	            <td colspan=2> <h4> Description:</h4></td>
+              <td> <input class='btn-lg col-md-9 col-lg-8' type='text' name='description' value=' <?php echo $row["Description"]?>' placeholder='Edit Description'> </td>
+						</div>
 	          </tr>
 
-					</tr>
+
 
 											<tr>
 					<div class='col-6 col-md-4'>
-						<td colspan=2> <h5> Order Stock From Supplier: <?php echo $row["Quantity"]?></h4></td>
-						<td> <input type='number' name='quantity' min='<?php echo $row["Quantity"]?>' placeholder='<?php echo $row["Quantity"]?>'> </td>
+						<td></td>
+						<td colspan=2> <h4> Quantity in Stock: </h4></td>
+						<td> <input class='btn-lg col-md-9 col-lg-8' type='number' name='quantity' value='<?php echo $row["Quantity"]?>' min='<?php echo $row["Quantity"]?>' max='100' placeholder='Edit quantity'> </td>
+					</div>
 					</tr>
 
-
-					</div>
-					</div>
-
-            </td></h3>
-					</tr>
-
-					<br/>
-
-
+					<tr>
+						<td></td>
+						<td colspan=2>
+      <input type='hidden' name='itemID' value='<?php echo $row['ID']?>'>
+      <input class='btn btn-secondary btn-md col-md-8 col-lg-8' type='submit' name='update' value='update' >
+		</td>
+		<td colspan=2>
+      <input class='btn btn-danger btn-md col-md-9 col-lg-9' type='submit' name='delete' value='Delete Medicine'>
+		</td>
+		</tr>
 			</table>
-      <input type='hidden' name='med' value='<?php echo $row['ID']?>'>
-      <input type='submit' name='done' value='Confirm' >
-      <input type='submit' name='delete' value='Delete Medicine'>
     </form>
     <?php
 // Update Database
@@ -139,6 +143,17 @@ try
 		</div>
 	</section>
 	</body>
+	<script>
+		function listChange(){
+			console.log('function called');
+			if (document.getElementById('categoryList').value.length==0) {
+				console.log('function called2');
+				document.getElementById('categoryList').blur();
+				document.getElementById('categoryList').focus();
+			}
+
+		}
+	</script>
 </html>
 <?php
 

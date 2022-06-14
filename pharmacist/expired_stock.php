@@ -2,9 +2,9 @@
 //FUTURE WORK - add button to remove items from expired
 session_start();
 if (!isset($_SESSION['userId']))
-  header('location:reg_loginform.php?error=1');
+  header('location:../reg_loginform.php?error=1');
 if ($_SESSION['userType']!="Pharmacist") {
-  header('location:reg_loginform.php?error=1');
+  header('location:../reg_loginform.php?error=1');
 }
 ?>
 
@@ -28,7 +28,7 @@ if ($_SESSION['userType']!="Pharmacist") {
 
     try
     	{
-    	require('project_connection.php');
+    	require('../project_connection.php');
     	 $db->beginTransaction();
 
     	 $sql="SELECT * from items WHERE expiry <= CURRENT_DATE()";

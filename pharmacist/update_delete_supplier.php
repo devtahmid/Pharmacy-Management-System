@@ -1,21 +1,20 @@
 <?php
 try
 	{
-		require('project_connection.php');
+		require('../project_connection.php');
     extract($_GET);
-    $itemID = $med;
-    if(isset($_GET['done'])){
-      $sql = "Update supplier Set number= '$number' Where ID=$itemID";
+    if(isset($_GET['update'])){
+      $sql = "Update supplier Set number= '$number' Where ID=$supplierId";
       $change = $db->prepare($sql);
       $change->execute();
       echo "Database Updated";
-      header("location:?id=$med&view=Edit+Supplier");
+      header("location:viewSupplier.php?msg=1");
     }
     if(isset($_GET['delete'])){
-      $sql = "Delete from supplier Where ID=$itemID";
+      $sql = "Delete from supplier Where ID=$supplierId";
       $change = $db->prepare($sql);
       $change->execute();
-      header('location:pharmacist_home.php');
+      header('location:viewSupplier.php?msg=2');
     }
 
     $db=null;

@@ -3,10 +3,10 @@ require('header_pharmacist.php') ;
 session_start();
 
 if (!isset($_SESSION['userId']))
-  header('location: login_form.php?error=1');
+  header('location: ../login_form.php?error=1');
 
 if($_SESSION['userType'] != 'Pharmacist')
-    header('location: index.php');
+    header('location: ../index.php');
 ?>
 
 <html>
@@ -49,13 +49,13 @@ if($_SESSION['userType'] != 'Pharmacist')
    </div>
      <?php
      try {
-       require('project_connection.php');
+       require('../project_connection.php');
        extract($_POST);
        if(isset($_POST['addSup'])){
-         $sql = "Insert into `supplier`( `name`, `number`) VALUES ('$supName','$number')";
+         $sql = "Insert into `supplier`( `name`, `number`) VALUES ('$supName','$number', 'active')";
          $change= $db->prepare($sql);
          $change->execute();
-         echo "<script> alert('Database Updated') </script>";
+         echo "<script> alert('Supplier Added') </script>";
        }
      }
      catch (PDOException $e) {
@@ -66,6 +66,6 @@ if($_SESSION['userType'] != 'Pharmacist')
      <br><br>
      <div style="text-align:center;">
    <a class="navbar-toggler navbar-toggler-right font-weight-bold bg-primary text-white rounded" href="pharmacist_home.php">Home</a>
-     </div>     
+     </div>
   </body>
 </html>
