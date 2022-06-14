@@ -24,7 +24,7 @@
     $mobilePattern= '/^(50|52|54|55|56|58)[0-9]{6,8}$/';
     $country="United Arab Emirates";
   }
-  $addrPattern='/^(?=.*[a-z])([a-z0-9:,]{1,}\s?)*[a-z0-9]+$/i';
+  $addrPattern='/^[0-9]{3,4}$/';
 
   if(preg_match($namePattern, $name))
   $nameFlag=true;
@@ -51,16 +51,17 @@
     $h_password=password_hash($password,PASSWORD_DEFAULT);
     $profilepic='default.jpg';
     //$mobile=$country_code.$mobile; will display like that otherwise searching for num becomes difficult in ajax registration
-    $sql="insert into user(UID,Username,Email,Password,Type) values (NULL, '$username', '$password', '$mail', 'Customer')";
-  //  $db->beginTransaction();
+    $sql="insert into user(Username,Email,Password,Type) values ( '$username', '$mail', '$password', 'Customer')";
+    $db->beginTransaction();
     $conn = $db->prepare($sql);
     $conn->execute();
     $Sid= $db->lastInsertId();
-
-    $sql="insert into customer(CID,Fname,Lname,Mobile,Building,Block) values (NULL, '$name', '$lname', '$mobile', '$address', '$block')";
+    echo $Sid;
+    //default profile pic for new user is 'default.jpg'
+    $sql="insert into customer(Fname,Lname,Mobile,Building,Block, UID, Profile_pic) values ('$name', '$lname', '$mobile', '$address', '$block', $Sid, 'default.jpg')";
     $conn = $db->prepare($sql);
     $conn->execute();
-  //  $db->commit();
+    $db->commit();
     if ($conn->rowCount()==0) {
     header('location:registration_form.php?error=4');
     }
@@ -71,6 +72,7 @@
     session_start();
     $_SESSION['activeUser']=$username;
     $_SESSION['userId']=$Sid;
+    $_SESSION['userType']= 'Customer'; //only customer will use registration form
     header('location:index.php');
     }
     }
@@ -78,7 +80,7 @@
       $db->rollBack();
       echo "errorrrr:".$e->getMessage();
       //will show alert on reg_loginform.php with refreshing + error
-      header('location:registration_form.php?error=4');
+     header('location:registration_form.php?error=4');
 
     }
   }

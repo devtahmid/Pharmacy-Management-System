@@ -1,5 +1,6 @@
 <?php
   require("header_newuser.php");
+  require("noCache.php");
 ?>
 <html>
 <head>
@@ -48,7 +49,7 @@
     <label><h3>First Name:</h3></label>
     <input class='form-control' type='text' name='name' placeholder="maximum 50 characters" onkeyup="checkFN(this.value)" size='50' required><span id='name_msg'></span><br>
     <label><h3>Last Name:</h3></label>
-    <input class='form-control' type='text' name='lname' placeholder="maximum 50 characters" onkeyup="checkFN(this.value)" size='50' required><br> 
+    <input class='form-control' type='text' name='lname' placeholder="maximum 50 characters" onkeyup="checkFN(this.value)" size='50' required><br>
 
     <label><h3>Email:</h3></label>
     <input class='form-control' type='text' name='mail' placeholder="abc@example.com (30 characters max)" onkeyup="checkMAIL(this.value)" size='30' required><span id='mail_msg'></span><br>
@@ -64,17 +65,19 @@
     <label><h3>Country:</h3></label>
     <select class='form-control' name="country_code" onchange="checkMBL(document.forms[1].mobile.value)" required >
       <option value="+973" selected>Bahrain</option>
+      <!--
       <option value="+966">Saudi Arabia</option>
       <option value="+971">United Arab Emirates</option>
+    -->
     </select><br>
 
     <label><h3>Contact No:</h3></label>
     <input class='form-control' type='text' name='mobile' placeholder="8 digits for Bahrain, 8-10 others" onkeyup="checkMBL(this.value)" size='10' required><span id='mobile_msg'></span><br>
     <label><h3>Building:</h3></label>
-    <input class='form-control' type='text' name='address' placeholder=""  onkeyup="checkAddr(this.value)" size='50' required><span id='addr_msg'></span><br>
+    <input class='form-control' type='text' name='address' placeholder="3-4 digit building number"  onkeyup="checkAddr(this.value)" size='5' required><span id='addr_msg'></span><br>
 
     <label><h3>Block:</h3></label>
-    <input class='form-control' type='text' name='block' placeholder=""  size='50' required><br>
+    <input class='form-control' type='text' name='block' placeholder="3-4 digit block number"  onkeyup="checkBlock(this.value)" size='5' required><span id='block_msg'></span><br>
 
 
     <input type='hidden' name='JSEnabled' value='false'>

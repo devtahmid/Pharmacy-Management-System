@@ -1,4 +1,4 @@
-var nameFlag=emailFlag=usernameFlag=passwordFlag=cnfmpasswordFlag=mobileFlag=addressFlag=false;
+var nameFlag=emailFlag=usernameFlag=passwordFlag=cnfmpasswordFlag=mobileFlag=addressFlag=blockFlag=false;
 function checkFN(name) { //check full name
   var nameExp =/^([a-z]+\s)*[a-z]+$/i;
   if (name.length == 0) {
@@ -58,7 +58,7 @@ function checkPWD(pwd,id) { //check password
     color = "green";
     passwordFlag = true;
   }
-  document.getElementById(id).style.color = color;
+  document.getElementById(id).style.color = color; //id is used because same function use for login form where id is different
   document.getElementById(id).innerHTML = msg;
   if(id=="reg_pwd_msg")  //did this cus if user enters a valid passord after entering a valid comfirmation password
   confirmPWD(document.forms[1].cnfm_password.value);
@@ -127,24 +127,44 @@ function checkMBL(mobile) {  //check mobile num
   document.getElementById('mobile_msg').innerHTML = msg;
 }
 
-function checkAddr(addr) { //check if address is a sentence
-  var addrExp =/^(?=.*[a-z])([a-z0-9:,]{1,}\s?)*[a-z0-9]+$/i;
+function checkAddr(addr) { //check if building is 3-4 digits
+  var addrExp = /^[0-9]{3,4}$/;
   if (addr.length == 0) {
     msg = "";
     addressFlag = false;
   }
   else if (!addrExp.test(addr)) {
-    msg = "Invalid address";
+    msg = "Invalid building";
     color = "red";
     addressFlag = false;
   }
   else {
-    msg = "Valid address";
+    msg = "Valid building";
     color = "green";
     addressFlag = true;
   }
   document.getElementById('addr_msg').style.color = color;
   document.getElementById('addr_msg').innerHTML = msg;
+}
+
+function checkBlock(addr) { //check if block is 3-4 digits
+  var addrExp = /^[0-9]{3,4}$/;
+  if (addr.length == 0) {
+    msg = "";
+    blockFlag = false;
+  }
+  else if (!addrExp.test(addr)) {
+    msg = "Invalid block";
+    color = "red";
+    blockFlag = false;
+  }
+  else {
+    msg = "Valid block";
+    color = "green";
+    blockFlag = true;
+  }
+  document.getElementById('block_msg').style.color = color;
+  document.getElementById('block_msg').innerHTML = msg;
 }
 
 function checkMAIL(mail) { //check mail format

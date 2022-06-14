@@ -1,6 +1,12 @@
 <?php
-unset($_SESSION['user_id']);
-unset($_SESSION['auction_id']);
+session_start();
+unset($_SESSION['userId']);
+unset($_SESSION['userType']);
+unset($_SESSION['myCart']);
+session_unset();
 session_destroy();
-header("location:login_form.php");
+//below from php website session unset function
+session_write_close();
+setcookie(session_name(),'',0,'/');
+header('Location: login_form.php');
 ?>
