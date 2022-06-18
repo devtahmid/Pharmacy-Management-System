@@ -1,6 +1,6 @@
 # Pharmacy management system
 Full fledged online Pharmacy with access for customer, pharmacist, and admin.  
-Demo website: http://pharmams.epizy.com <br>
+Demo website: http://pharmams.epizy.com  
 
 ### Website Functionalities:
 1. For customer
@@ -35,3 +35,7 @@ Demo website: http://pharmams.epizy.com <br>
 - [ ] Pharmacist can make order from Supplier  
 - [ ] Order Status page for pharmacist. Orders marked completed will be added to stock  
 - [ ] Format number of output for reports  
+- [ ] Customer can ask questions on a medicine (will appear under Public Questions)
+- [ ] Pharmacist will get notified of unanswered questions and can answer them
+- [ ] Admin will have pharmacist view mode
+- [ ] Add timestamp to purchase so they're accurately ordered within a single day's purchase-history
