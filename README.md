@@ -25,10 +25,10 @@ Demo website: http://pharmams.epizy.com <br>
 - Add, view, and edit medicines  
 ![manage meds GIF](/readmeAssets/manageMeds.gif)  
 
--View Expired medicines  
+- View Expired medicines  
 ![expired meds image](/readmeAssets/exp.png)  
 
--Add, edit, and delete Supplier  
+- Add, edit, and delete Supplier  
 ![manage Supplier GIF](/readmeAssets/manageSupp.gif)  
 
 ### Future Work
