@@ -52,7 +52,7 @@ if($_SESSION['userType'] != 'Pharmacist')
        require('../project_connection.php');
        extract($_POST);
        if(isset($_POST['addSup'])){
-         $sql = "Insert into `supplier`( `name`, `number`) VALUES ('$supName','$number', 'active')";
+         $sql = "Insert into `supplier`( `name`, `number`, `contract`) VALUES ('$supName','$number', 'active')";
          $change= $db->prepare($sql);
          $change->execute();
          echo "<script> alert('Supplier Added') </script>";
