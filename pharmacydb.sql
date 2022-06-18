@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 17, 2022 at 01:45 PM
+-- Generation Time: Jun 18, 2022 at 07:21 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -48,7 +48,8 @@ INSERT INTO `customer` (`CID`, `Fname`, `Lname`, `Mobile`, `Building`, `Block`, 
 (4, 'Shaikh', 'Rahman', '38012087', '444', 444, 565, 'default.jpg'),
 (5, 'customer', 'three', '35225256', '441', 5236, 568, 'default.jpg'),
 (6, 'testperson', 'test perso', '38222222', '343', 245, 573, 'default.jpg'),
-(7, 'Ahmed', 'Abdulla', '36363636', '999', 4444, 111, 'picpikawoah165505491139712933862a6223f5e215.png');
+(7, 'Ahmed', 'Abdulla', '36363636', '999', 4444, 111, 'picpikawoah165505491139712933862a6223f5e215.png'),
+(8, 'Alex', 'Hertz', '32425353', '545', 645, 575, 'picspooderman165556165211409242462adddb40d063.jpg');
 
 -- --------------------------------------------------------
 
@@ -75,10 +76,10 @@ CREATE TABLE `items` (
 INSERT INTO `items` (`ID`, `Name`, `Description`, `Quantity`, `Price`, `Brand`, `Category`, `expiry`, `status`) VALUES
 (1, 'First Medicine', 'First Medicine', -3, 3.99, 'First', 'Pill', '2027-02-11', 'deleted'),
 (2, 'Second Medi', 'Second Medicine', 5, 1, 'Medi', 'Drink', '2022-05-24', 'present'),
-(3, 'Panadol Advance', ' Blue Panadol', 17, 0.35, 'Panadol', 'Pill', '2023-05-25', 'present'),
-(4, 'Ibuprofen', 'Anti-Inflammatory Drug', 13, 0.5, 'Ibuprofen', 'Pill', '2022-12-22', 'present'),
-(6, 'Panadol Extra', 'Paracetemol', 15, 1.99, 'Panadol', 'Tablet', '2022-10-18', 'present'),
-(7, 'Voltarol', 'Joint Pain relief', 19, 19.5, 'Voltarol', 'Gel', '2025-05-25', 'present'),
+(3, 'Panadol Advance', '  Blue Panadol', 18, 3.5, 'Panadol', 'Pill', '2023-05-25', 'deleted'),
+(4, 'Ibuprofen', 'Anti-Inflammatory Drug', 0, 0.5, 'Ibuprofen', 'Pill', '2022-12-22', 'present'),
+(6, 'Panadol Extra', 'Paracetemol', 14, 1.99, 'Panadol', 'Tablet', '2022-10-18', 'present'),
+(7, 'Voltarol', 'Joint Pain relief', 12, 19.5, 'Voltarol', 'Gel', '2025-05-25', 'present'),
 (8, 'Aspirin', 'Aspirin and Caffiene', 15, 2.79, 'Beechams', 'Pill', '2026-05-25', 'present'),
 (9, 'Isotonic Nasal Hygiene Spray', ' A spray for nasal hygiene', 7, 2.79, 'Sterimar', 'Spray', '2027-05-25', 'present'),
 (10, 'Sinus Rinse Kit', 'Rinisng kit to apply for sinuses', 20, 17.99, 'NeilMed', 'Inhaler', '2028-05-25', 'present'),
@@ -184,7 +185,9 @@ INSERT INTO `purchase` (`purchase_id`, `item_id`, `c_id`, `quantity`, `date`) VA
 (24, 9, 111, 1, '2022-06-12'),
 (25, 9, 111, 3, '2022-06-12'),
 (26, 9, 111, 2, '2022-06-12'),
-(27, 9, 111, 1, '2022-06-12');
+(27, 9, 111, 1, '2022-06-12'),
+(38, 3, 575, 1, '2022-06-18'),
+(39, 4, 575, 1, '2022-06-18');
 
 -- --------------------------------------------------------
 
@@ -223,8 +226,6 @@ CREATE TABLE `supplier` (
 --
 
 INSERT INTO `supplier` (`ID`, `name`, `number`, `contract`) VALUES
-(1, 'supplier1', '1777661', 'active'),
-(2, 'supplier2', '1777222', 'active'),
 (3, 'tahmid', '17777777', 'active'),
 (4, 'KAnoo', '17254856', 'active');
 
@@ -247,7 +248,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`UID`, `Username`, `Email`, `Password`, `Type`) VALUES
-(111, 'A1AAA', 'A1@email.com', 'Aaaaa1', 'Customer'),
+(111, 'Tahmid', 'A1@email.com', 'Abcde1', 'Customer'),
 (223, 'test2', 'Test12', 'test@gmail.com', 'Customer'),
 (555, 'admin', 'admin@gmail.com', 'admiN1', 'Admin'),
 (563, 'Test11', 'Test11', 'shaikhtahmidurrahman10@gmail.com', 'Customer'),
@@ -258,7 +259,8 @@ INSERT INTO `user` (`UID`, `Username`, `Email`, `Password`, `Type`) VALUES
 (570, 'pharma4', 'pharma4@fdfd.cd', 'Pharma4', 'Pharmacist'),
 (571, 'Pharma5', 'pharma5@fdfd.dfs', 'Pharma5', 'Pharmacist'),
 (573, 'testperson', 'testperson@gmail.com', 'Testperson1', 'Customer'),
-(574, 'pharma6', 'pharma6@gmail.com', 'Pharma6', 'Pharmacist');
+(574, 'pharma6', 'pharma6@gmail.com', 'Pharma6', 'Pharmacist'),
+(575, 'arhertz', 'arhertz@gmail.com', 'Arhertz1', 'Customer');
 
 --
 -- Indexes for dumped tables
@@ -327,7 +329,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `CID` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `CID` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `items`
@@ -351,7 +353,7 @@ ALTER TABLE `pictures`
 -- AUTO_INCREMENT for table `purchase`
 --
 ALTER TABLE `purchase`
-  MODIFY `purchase_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `purchase_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT for table `staff`
@@ -363,13 +365,13 @@ ALTER TABLE `staff`
 -- AUTO_INCREMENT for table `supplier`
 --
 ALTER TABLE `supplier`
-  MODIFY `ID` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ID` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `UID` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=575;
+  MODIFY `UID` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=577;
 
 --
 -- Constraints for dumped tables
