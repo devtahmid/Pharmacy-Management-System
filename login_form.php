@@ -22,6 +22,44 @@
   .login {
     font-size: 50px;
   }
+
+
+
+
+
+  .popup {
+    display: none;
+    position: fixed;
+    padding: 10px;
+    width: 280px;
+    left: 50%;
+    margin-left: -150px;
+    height: 210px;
+    top: 50%;
+    margin-top: -100px;
+    background: #66b3ff;
+    z-index: 20;
+    border: 5px solid white;
+    border-radius: 15px;
+  }
+
+  #popup1 {
+    -webkit-box-shadow:  0px 0px 0px 9999px rgba(0, 0, 0, 0.5);
+    box-shadow:  0px 0px 0px 9999px rgba(0, 0, 0, 0.5);
+  }
+
+
+  /* From here on, just aesthetics */
+
+  .popup a,
+  .popup a:visited {
+    color:  #037d50;
+  }
+
+  p {
+  	margin: 1em 0;
+  }
+
   </style>
 </head>
 
@@ -49,13 +87,31 @@
 
     <input type='hidden' name='JSEnabled' value='false'>
     <input class='btn btn-lg btn-primary submit' type='submit' name='login_user' value='Login'>
-
+    <button class='btn btn-lg btn-success submit' type='button' onclick="show('popup1')">Use Sample Accounts</button>
   </form>
 </br>
     <p>Dont have an account? <b><a href="registration_form.php">Sign up here!</a></b> </p>
  </div>
-<?php
 
+
+
+ <!-- pop up for login details, css(on same page) starts from popup class-->
+ <div class="popup" id="popup1">
+   <u>Customer</u><br>
+     <b>username:</b>Tahmid&nbsp&nbsp <b>pass:</b>Abcde1<br>
+   	<u>Pharmacist</u><br>
+     <b>username:</b>pharma2&nbsp&nbsp <b>pass:</b>Pharma2<br>
+     <u>Admin</u><br>
+     <b>username:</b>admin&nbsp&nbsp <b>pass:</b>admiN1<br><br>
+   <a href="#" onclick="hide('popup1')"><b>Ok!</b></a>
+ </div>
+
+<script>
+if (screen.availWidth<1080) {
+  alert("Please use a bigger screen as the website is not fully responsive yet. Thank you");
+}
+</script>
+<?php
 $error=null;
 extract($_GET);
 if ($error==1) {
@@ -70,7 +126,18 @@ elseif ($error==3) {
 elseif ($error==4) {
   echo "<script> alert('Database error :('); </script>";
 }
-
 ?>
 </body>
+<script>
+$ = function(id) {
+  return document.getElementById(id);
+}
+
+var show = function(id) {
+	$(id).style.display ='block';
+}
+var hide = function(id) {
+	$(id).style.display ='none';
+}
+</script>
 </html>

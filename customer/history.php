@@ -60,7 +60,7 @@ if (!isset($_SESSION['userId']))
           echo "</table>";
         }//if rowcount end
         else {//if nothing to show in purchase history
-          echo "<br><br><br><br><br><p style='text-align:center;'>No purchases made</p>";
+          echo "<br><br><br><br><br><h1 style='text-align:center;'>No purchases made</h1>";
         }
   	}//try end
   	catch(PDOException $ex)
