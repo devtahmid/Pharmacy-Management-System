@@ -18,7 +18,7 @@
 							<td colspan=2><h3><u>Question :</u> Can we purchase from this website?</h3></td>
 							</tr>
 						   <tr>
-							<td><h3> Answer : Yes.</h3></td>
+							<td><h3> Answer : Yes, you can.</h3></td>
 							</tr>
 
 							<tr>
