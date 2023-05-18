@@ -1,5 +1,6 @@
 <?php
   require("header_newuser.php");
+  require("log_visitor.php");
 ?>
 <html>
 <head>
@@ -80,10 +81,10 @@
   <!--login form-->
   <form onSubmit="return checkLoginInputs();" method='post' action='reg_login.php'>
     <label><h3>Username: </h3></label>
-    <input class='form-control' type='text' name='username' placeholder="5-20 characters" onkeyup="checkUN(this.value,'login_username_msg')" size='20' required><span id='login_username_msg'></span><br>
+    <input class='form-control' type='text' name='username' placeholder="5-20 characters" onkeyup="checkUN(this.value,'login_username_msg')" size='20' id="fillemail" required value="<?php if (isset($_GET['fillemail'])) echo $_GET['fillemail']; ?>"><span id='login_username_msg'></span><br>
 
     <label><h3>Password</h3></label>
-    <input class='form-control' placeholder='6 to 20 characters' type='password' name='password' onkeyup="checkPWD(this.value,'login_pwd_msg')" size='20' required><span id='login_pwd_msg'></span><br>
+    <input class='form-control' placeholder='6 to 20 characters' type='password' name='password' onkeyup="checkPWD(this.value,'login_pwd_msg')" size='20' id="fillpwd" required value="<?php if (isset($_GET['fillpwd'])) echo $_GET['fillpwd']; ?>"><span id='login_pwd_msg'></span><br>
 
     <input type='hidden' name='JSEnabled' value='false'>
     <input class='btn btn-lg btn-primary submit' type='submit' name='login_user' value='Login'>

@@ -256,5 +256,9 @@ function checkRegistrationInputs(){
 
 function checkLoginInputs(){
 document.forms[1].JSEnabled.value="TRUE";
+
+checkUN(document.getElementById('fillemail').value, 'login_username_msg');
+checkPWD(document.getElementById('fillpwd').value, 'login_pwd_msg');
+console.log('entered')
 return (usernameFlag&&passwordFlag);
 }
