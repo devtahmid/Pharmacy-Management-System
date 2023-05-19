@@ -1,6 +1,5 @@
 <?php
   require("header_newuser.php");
-  require("log_visitor.php");
 ?>
 <html>
 <head>
