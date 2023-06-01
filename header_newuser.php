@@ -35,14 +35,13 @@
       <ul class="navbar-nav mt-2 mt-lg-0 col-lg-5">
         <?php
         $pageName = basename($_SERVER['PHP_SELF']); /* Returns The Current PHP File Name */
-        if ($pageName != "login_form.php") {
+        if ($pageName == "registration_form.php") {
         ?>
           <li class="nav-item ml-lg-auto">
             <a class="nav-link text-white pl-5 pl-lg-3" href="login_form.php">Login <span class="sr-only">(current)</span></a>
           </li>
         <?php
-        }
-        elseif ($pageName != "registration_form.php") {
+        } else {
         ?>
           <li class="nav-item ml-lg-auto">
             <a class="nav-link text-white pl-5 pl-lg-3" href="registration_form.php">Register <span class="sr-only">(current)</span></a>
