@@ -1,57 +1,76 @@
 <!-- header for logged in customer ONLY -->
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="description" content="">
-        <meta name="author" content="">
-        <title>Pharmacy Management System</title>
-        <!-- Font Awesome icons (free version)-->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
-        <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="../css/styles.css" rel="stylesheet">
-        <!-- Fonts CSS-->
-        <link rel="stylesheet" href="../css/heading.css">
-        <link rel="stylesheet" href="../css/body.css">
-    </head>
-    <body id="page-top">
-        <nav class="navbar navbar-expand-lg bg-secondary fixed-top" id="mainNav">
-          <a class="navbar-brand js-scroll-trigger" href="customer_home.php">Pharmacy Management System</a>
-            <button class="navbar-toggler navbar-toggler-right font-weight-bold bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">Menu <i class="fas fa-bars"></i></button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="browse.php">Browse</a>
-                    </li>
-                </ul>
-                <form class="form-inline" action="search.php" method="post">
-                <input id="main_search" class="form-control col-lg-8 col-sm-8 col-md-8 mr-2" type="search" name="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-primary col-sm-2 col-md-2" type="submit">Search</button>
-                </form>
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="cart_view.php">Cart</a>
-                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="history.php">Purchases</a>
-                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="profile.php" >View Profile</a>
-                    </li>
-                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="faq.php">FAQ</a>
-                    </li>
-                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="about.php">About</a>
-                    </li>
-                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="../logout.php">Log out</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-        <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes)-->
-        <div class="scroll-to-top d-lg-none position-fixed"><a class="js-scroll-trigger d-block text-center text-white rounded" href="#page-top"><i class="fa fa-chevron-up"></i></a></div>
-        <!-- Bootstrap core JS-->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-        <!-- Third party plugin JS-->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
-        <!-- Contact form JS-->
-        <script src="assets/mail/jqBootstrapValidation.js"></script>
-        <script src="assets/mail/contact_me.js"></script>
-        <!-- Core theme JS-->
-        <script src="../js/scripts.js"></script>
-      </div>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Pharmacy Management System</title>
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="../css/styles.css" rel="stylesheet">
+    <!-- Fonts CSS-->
+    <link rel="stylesheet" href="../css/heading.css">
+    <link rel="stylesheet" href="../css/body.css">
+</head>
+
+<body id="page-top">
+    <nav class="navbar navbar-dark bg-secondary navbar-expand-xl ">
+        <a class="navbar-brand font-weight-bold col" href="#">Pharmacy Management System</a>
+
+        <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button> -->
+
+        <button class="navbar-toggler navbar-toggler-right font-weight-bold bg-primary py-2 text-white rounded" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="#navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">Menu <i class="fas fa-bars"></i></button>
+
+        <div class="collapse navbar-collapse row" id="navbarTogglerDemo02">
+
+            <ul class="navbar-nav mt-2 mt-xl-0 mr-xl-5">
+                <li class="nav-item px-2">
+                    <a class="nav-link text-white pl-3" href="browse.php">Browse<span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
+
+
+            <form class="form-inline my-2 my-xl-0 col-xl-5" action="customer/search.php" method="post">
+                <input class="form-control col-8" type="search" placeholder="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0 " type="submit">Search</button>
+            </form>
+            <ul class="navbar-nav mt-2 mt-xl-0 ml-xl-auto">
+                <li class="nav-item">
+                    <a class="nav-link text-white pl-3" href="history.php">Purchases<span class="sr-only">(current)</span></a>
+                </li>
+
+                <li class="nav-item ml-xl-2 text-center">
+                    <a class="nav-link text-white pl-3" href="profile.php">View Profile</a>
+                </li>
+                <li class="nav-item ml-xl-2">
+                    <a class="nav-link text-white pl-3" href="faq.php">FAQ</a>
+                </li>
+                <li class="nav-item ml-xl-2">
+                    <a class="nav-link text-white pl-3" href="about.php">About</a>
+                </li>
+                <li class="nav-item ml-xl-2 pr-xl-2">
+                    <a class="nav-link text-white pl-3" href="../logout.php">Log out</a>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+    <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes)-->
+    <div class="scroll-to-top d-lg-none position-fixed"><a class="js-scroll-trigger d-block text-center text-white rounded" href="#page-top"><i class="fa fa-chevron-up"></i></a></div>
+    <!-- Bootstrap core JS-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <!-- Third party plugin JS-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+    <!-- Contact form JS-->
+    <script src="assets/mail/jqBootstrapValidation.js"></script>
+    <script src="assets/mail/contact_me.js"></script>
+    <!-- Core theme JS-->
+    <script src="../js/scripts.js"></script>
+    </div>

@@ -17,47 +17,37 @@
 </head>
 
 <body id="page-top">
-  <nav class="navbar navbar-dark bg-secondary navbar-expand-lg ">
-    <a class="navbar-brand font-weight-bold col" href="login_form.php">Pharmacy Management System</a>
-
-
-    <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button> -->
-
-    <button class="navbar-toggler navbar-toggler-right font-weight-bold bg-primary py-2 text-white rounded" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="#navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">Menu <i class="fas fa-bars"></i></button>
-
-    <div class="collapse navbar-collapse row" id="navbarTogglerDemo02">
-      <form class="form-inline my-2 my-lg-0 col-lg-7 px-5 mx-auto" action="customer/search.php" method="post">
-        <input class="form-control col-8 mr-2" type="search" placeholder="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0 " type="submit">Search</button>
+  <nav class="navbar navbar-expand-lg bg-secondary fixed-top" id="mainNav">
+    <a class="navbar-brand js-scroll-trigger" href="index.php">Pharmacy Management System</a>
+    <button class="navbar-toggler navbar-toggler-right font-weight-bold bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">Menu <i class="fas fa-bars"></i></button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav mr-auto">
+      </ul>
+      <form class="form-inline my-2 my-lg-0" action="customer/search.php" method="post">
+        <input id="main_search" class="form-control mr-sm-2" type="search" name="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
       </form>
-      <ul class="navbar-nav mt-2 mt-lg-0 col-lg-5">
+      <ul class="navbar-nav ml-auto">
         <?php
         $pageName = basename($_SERVER['PHP_SELF']); /* Returns The Current PHP File Name */
         if ($pageName != "login_form.php") {
         ?>
-          <li class="nav-item ml-lg-auto">
-            <a class="nav-link text-white pl-5 pl-lg-3" href="login_form.php">Login <span class="sr-only">(current)</span></a>
+          <li class="nav-item mx-0 mx-lg-2 ml-lg-auto"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="login_form.php">Login</a>
           </li>
         <?php
         }
-        elseif ($pageName != "registration_form.php") {
+        if ($pageName != "registration_form.php") {
         ?>
-          <li class="nav-item ml-lg-auto">
-            <a class="nav-link text-white pl-5 pl-lg-3" href="registration_form.php">Register <span class="sr-only">(current)</span></a>
+          <li class="nav-item mx-0 mx-lg-2 "><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="registration_form.php">Register</a>
           </li>
         <?php
         }
         ?>
-        <li class="nav-item">
-          <a class="nav-link text-white pl-5 pl-lg-3" href="faq.php">FAQ</a>
+        <li class="nav-item text-white mx-0 mx-lg-2"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="faq.php">FAQ</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link text-white pl-5 pl-lg-3" href="about.php">About</a>
+        <li class="nav-item  mx-0 mx-lg-2"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="about.php">About</a>
         </li>
       </ul>
-
     </div>
   </nav>
   <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes)-->
