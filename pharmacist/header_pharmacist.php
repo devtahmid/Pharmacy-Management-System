@@ -40,7 +40,7 @@
                 <li class="nav-item ml-xl-2">
                     <a class="nav-link text-white pl-3" href="viewSupplier.php">Suppliers</a>
                 </li>
-                <li class="nav-item ml-xl-2 pr-xl-2">
+                <li class="nav-item ml-xl-2 ">
                     <a class="nav-link text-white pl-3" href="../logout.php">Log out</a>
                 </li>
             </ul>
