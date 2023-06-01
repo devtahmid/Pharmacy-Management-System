@@ -1,5 +1,5 @@
 <?php
-require("header_newuser.php");
+  require("header_newuser.php");
 ?>
 <html>
 
