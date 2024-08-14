@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.2.1deb3
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jun 18, 2022 at 07:21 PM
--- Server version: 10.4.14-MariaDB
--- PHP Version: 7.4.10
+-- Host: localhost:3306
+-- Generation Time: Aug 14, 2024 at 07:16 PM
+-- Server version: 8.0.39-0ubuntu0.24.04.1
+-- PHP Version: 8.3.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -28,15 +28,15 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `customer` (
-  `CID` int(9) NOT NULL,
+  `CID` int NOT NULL,
   `Fname` varchar(10) NOT NULL,
   `Lname` varchar(10) NOT NULL,
   `Mobile` varchar(10) NOT NULL,
   `Building` varchar(30) NOT NULL,
-  `Block` int(5) NOT NULL,
-  `UID` int(9) NOT NULL,
+  `Block` int NOT NULL,
+  `UID` int NOT NULL,
   `Profile_pic` varchar(250) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `customer`
@@ -58,16 +58,16 @@ INSERT INTO `customer` (`CID`, `Fname`, `Lname`, `Mobile`, `Building`, `Block`, 
 --
 
 CREATE TABLE `items` (
-  `ID` int(9) NOT NULL,
+  `ID` int NOT NULL,
   `Name` varchar(70) NOT NULL,
   `Description` varchar(300) NOT NULL,
-  `Quantity` int(10) NOT NULL,
+  `Quantity` int NOT NULL,
   `Price` double NOT NULL,
   `Brand` varchar(50) NOT NULL,
   `Category` varchar(30) NOT NULL,
-  `expiry` DATE NOT NULL DEFAULT '2024-08-13',
+  `expiry` date NOT NULL DEFAULT '2024-08-13',
   `status` varchar(30) NOT NULL DEFAULT 'present'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `items`
@@ -78,9 +78,9 @@ INSERT INTO `items` (`ID`, `Name`, `Description`, `Quantity`, `Price`, `Brand`, 
 (2, 'Second Medi', 'Second Medicine', 5, 1, 'Medi', 'Drink', '2022-05-24', 'present'),
 (3, 'Panadol Advance', '  Blue Panadol', 18, 3.5, 'Panadol', 'Pill', '2023-05-25', 'deleted'),
 (4, 'Ibuprofen', 'Anti-Inflammatory Drug', 0, 0.5, 'Ibuprofen', 'Pill', '2022-12-22', 'present'),
-(6, 'Panadol Extra', 'Paracetemol', 14, 1.99, 'Panadol', 'Tablet', '2022-10-18', 'present'),
-(7, 'Voltarol', 'Joint Pain relief', 12, 19.5, 'Voltarol', 'Gel', '2025-05-25', 'present'),
-(8, 'Aspirin', 'Aspirin and Caffiene', 15, 2.79, 'Beechams', 'Pill', '2026-05-25', 'present'),
+(6, 'Panadol Extra', 'Paracetemol', 14, 1.99, 'Panadol', 'Tablet', '2026-10-18', 'present'),
+(7, 'Voltarol', 'Joint Pain relief', 12, 19.5, 'Voltarol', 'Gel', '2028-05-25', 'present'),
+(8, 'Aspirin', 'Aspirin and Caffiene', 15, 2.79, 'Beechams', 'Pill', '2028-08-19', 'present'),
 (9, 'Isotonic Nasal Hygiene Spray', ' A spray for nasal hygiene', 7, 2.79, 'Sterimar', 'Spray', '2027-05-25', 'present'),
 (10, 'Sinus Rinse Kit', 'Rinisng kit to apply for sinuses', 20, 17.99, 'NeilMed', 'Inhaler', '2028-05-25', 'present'),
 (11, 'BronchoStop Cough Syrup', 'Cough Syrup for treating fierce coughs', 30, 10.5, 'BronchoStop', 'Drink', '2029-05-25', 'present'),
@@ -99,12 +99,12 @@ INSERT INTO `items` (`ID`, `Name`, `Description`, `Quantity`, `Price`, `Brand`, 
 --
 
 CREATE TABLE `orderdata` (
-  `OID` int(9) NOT NULL,
+  `OID` int NOT NULL,
   `item_name` varchar(50) NOT NULL,
   `status` varchar(30) NOT NULL,
-  `supplier_id` int(20) NOT NULL,
-  `quantity` int(3) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `supplier_id` int NOT NULL,
+  `quantity` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -113,10 +113,10 @@ CREATE TABLE `orderdata` (
 --
 
 CREATE TABLE `pictures` (
-  `PICTURE_ID` int(11) NOT NULL,
-  `ID` int(11) NOT NULL,
+  `PICTURE_ID` int NOT NULL,
+  `ID` int NOT NULL,
   `PICTURE` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `pictures`
@@ -147,12 +147,12 @@ INSERT INTO `pictures` (`PICTURE_ID`, `ID`, `PICTURE`) VALUES
 --
 
 CREATE TABLE `purchase` (
-  `purchase_id` int(11) NOT NULL,
-  `item_id` int(11) NOT NULL,
-  `c_id` int(11) NOT NULL,
-  `quantity` int(11) NOT NULL,
+  `purchase_id` int NOT NULL,
+  `item_id` int NOT NULL,
+  `c_id` int NOT NULL,
+  `quantity` int NOT NULL,
   `date` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `purchase`
@@ -196,17 +196,17 @@ INSERT INTO `purchase` (`purchase_id`, `item_id`, `c_id`, `quantity`, `date`) VA
 --
 
 CREATE TABLE `staff` (
-  `Sid` int(9) NOT NULL,
-  `CPR` int(9) NOT NULL,
+  `Sid` int NOT NULL,
+  `CPR` int NOT NULL,
   `Fname` varchar(20) NOT NULL,
   `Lname` varchar(20) NOT NULL,
   `Gender` varchar(6) NOT NULL,
   `Academic Degree` varchar(30) NOT NULL,
   `Mobile` varchar(10) NOT NULL,
   `Building` varchar(30) NOT NULL,
-  `Block` int(5) NOT NULL,
+  `Block` int NOT NULL,
   `Picture` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -215,11 +215,11 @@ CREATE TABLE `staff` (
 --
 
 CREATE TABLE `supplier` (
-  `ID` int(9) NOT NULL,
+  `ID` int NOT NULL,
   `name` varchar(20) NOT NULL,
   `number` varchar(10) NOT NULL,
   `contract` varchar(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `supplier`
@@ -236,12 +236,12 @@ INSERT INTO `supplier` (`ID`, `name`, `number`, `contract`) VALUES
 --
 
 CREATE TABLE `user` (
-  `UID` int(9) NOT NULL,
+  `UID` int NOT NULL,
   `Username` varchar(10) NOT NULL,
   `Email` varchar(30) NOT NULL,
   `Password` varchar(32) NOT NULL,
   `Type` varchar(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `user`
@@ -329,49 +329,49 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `CID` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `CID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
-  MODIFY `ID` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `orderdata`
 --
 ALTER TABLE `orderdata`
-  MODIFY `OID` int(9) NOT NULL AUTO_INCREMENT;
+  MODIFY `OID` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `pictures`
 --
 ALTER TABLE `pictures`
-  MODIFY `PICTURE_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `PICTURE_ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `purchase`
 --
 ALTER TABLE `purchase`
-  MODIFY `purchase_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `purchase_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT for table `staff`
 --
 ALTER TABLE `staff`
-  MODIFY `Sid` int(9) NOT NULL AUTO_INCREMENT;
+  MODIFY `Sid` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `supplier`
 --
 ALTER TABLE `supplier`
-  MODIFY `ID` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `UID` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=577;
+  MODIFY `UID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=577;
 
 --
 -- Constraints for dumped tables
