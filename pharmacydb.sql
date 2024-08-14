@@ -65,7 +65,7 @@ CREATE TABLE `items` (
   `Price` double NOT NULL,
   `Brand` varchar(50) NOT NULL,
   `Category` varchar(30) NOT NULL,
-  `expiry` date NOT NULL DEFAULT current_timestamp(),
+  `expiry` DATE NOT NULL DEFAULT '2024-08-13',
   `status` varchar(30) NOT NULL DEFAULT 'present'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
