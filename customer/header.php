@@ -36,8 +36,8 @@
             </ul>
 
 
-            <form class="form-inline my-2 my-xl-0 col-xl-5" action="customer/search.php" method="post">
-                <input class="form-control col-8" type="search" placeholder="Search">
+            <form class="form-inline my-2 my-xl-0 col-xl-5" action="search.php" method="post">
+                <input class="form-control col-8" name="search" type="search" placeholder="Search">
                 <button class="btn btn-outline-success my-2 my-sm-0 " type="submit">Search</button>
             </form>
             <ul class="navbar-nav mt-2 mt-xl-0 ml-xl-auto">
